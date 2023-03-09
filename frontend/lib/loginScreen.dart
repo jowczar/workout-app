@@ -28,7 +28,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: CustomPaint(
                           painter: CurvePainter(context),
                         ),
-                      )))
+                      ))),
+              Center(
+                  child: Container(
+                margin: EdgeInsets.only(
+                  top: 75.0,
+                ),
+                // padding: EdgeInsets.only(
+                //     top: 75.0, left: MediaQuery.of(context).size.width / 2, right: MediaQuery.of(context).size.width / 2)),
+
+                child: Column(children: <Widget>[
+                  Image(
+                    image: AssetImage('assets/ancientGods.png'),
+                    alignment: FractionalOffset(0, 350),
+                    height: 400,
+                    width: 400,
+                  ),
+                  SizedBox(height: 40)
+                ]),
+              ))
             ]))));
   }
 }
