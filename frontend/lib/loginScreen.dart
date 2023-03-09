@@ -43,7 +43,7 @@ class CurvePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
-    paint.color = Color(0XFF140E35);
+    paint.color = Color.fromARGB(255, 40, 27, 116);
     paint.style = PaintingStyle.fill;
 
     paint.maskFilter = MaskFilter.blur(BlurStyle.outer, 175);
