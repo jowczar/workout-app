@@ -46,7 +46,7 @@ class CurvePainter extends CustomPainter {
     paint.color = Color(0XFF140E35);
     paint.style = PaintingStyle.fill;
 
-    paint.maskFilter = MaskFilter.blur(BlurStyle.normal, 15);
+    paint.maskFilter = MaskFilter.blur(BlurStyle.normal, 75);
 
     double screenHeight = (MediaQuery.of(context).size.height);
     double screenWidth = (MediaQuery.of(context).size.width);
@@ -63,7 +63,7 @@ class CurvePainter extends CustomPainter {
         Rect.fromCenter(
             center: size.center(Offset(-(screenHeight / 2), screenHeight / 10)),
             width: screenWidth * 2.5,
-            height: 0.8 * screenHeight),
+            height: screenHeight),
         paint);
   }
 
