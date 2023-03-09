@@ -61,8 +61,8 @@ class CurvePainter extends CustomPainter {
 
     canvas.drawOval(
         Rect.fromCenter(
-            center: size.center(Offset(-(screenHeight / 2), screenHeight / 10)),
-            width: screenWidth * 2.5,
+            center: size.center(Offset(-(screenWidth / 2), 0)),
+            width: screenWidth * 2,
             height: screenHeight),
         paint);
   }
