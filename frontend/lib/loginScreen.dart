@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/components/background.dart';
+import 'package:workout_app/components/button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -25,7 +26,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
 class LoginPageBox {
   static getBox() {
-    return Stack(children: <Widget>[Logo.getLogo()]);
+    return Column(children: <Widget>[
+      Logo.getLogo(), 
+      Button(text = "Sign in", style = "primary"),
+      Button(text = "Sign up", style = "secondary"),
+      ElevatedButton(
+              onPressed: () {
+                
+              },
+              child: const Text('Sign in'),
+      ),
+      ElevatedButton(
+              onPressed: () {
+                
+              },
+              child: const Text('Sign up'),
+      )
+    ]);
   }
 }
 
