@@ -28,8 +28,8 @@ class LoginPageBox {
   static getBox() {
     return Column(children: <Widget>[
       Logo.getLogo(), 
-      Button(text = "Sign in", style = "primary"),
-      Button(text = "Sign up", style = "secondary"),
+      // Button(text = "Sign in", style = "primary"),
+      // Button(text = "Sign up", style = "secondary"),
       ElevatedButton(
               onPressed: () {
                 
