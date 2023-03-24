@@ -24,5 +24,12 @@ class AuthService {
     _controller.add(AuthenticationStatus.unauthenticated);
   }
 
+  static Future<void> resetPassword(String email) async {
+    await Future.delayed(
+      const Duration(milliseconds: 300),
+      () => _controller.add(AuthenticationStatus.authenticated),
+    );
+  }
+
   void dispose() => _controller.close();
 }
