@@ -18,15 +18,14 @@ firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
  
-@api_view(['GET'],)
+@api_view(['GET','POST'],)
 @permission_classes([AllowAny],)
 def home(request):
-    
     id = database.child('Data').child('Id').get().val()
     name = database.child('Data').child('name').get().val()
-    return render(request,"Home.html",
-                   {"id":id,
-                   "name":name})
+    return HttpResponse("Ok")
+    
+  
 
 # Create your views here.
 @api_view(['GET'],)
