@@ -76,3 +76,17 @@ def postsignUp(request):
      except:
         return render(request, "Registration.html")
      return render(request,"Login.html")
+
+
+def reset(request):
+    return render(request, "Reset.html")
+ 
+def postReset(request):
+    email = request.POST.get('email')
+    try:
+        authe.send_password_reset_email(email)
+        message  = "A email to reset password is successfully sent"
+        return render(request, "Reset.html", {"msg":message})
+    except:
+        message  = "Something went wrong, Please check the email you provided is registered or not"
+        return render(request, "Reset.html", {"msg":message})
