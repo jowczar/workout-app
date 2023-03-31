@@ -1,0 +1,16 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('hellodjango', views.hello_django, name ='hellodjango'),
+    path('home', views.home),
+    path('', views.signIn),
+    path('postsignIn/', views.postSignIn, name ='postsignIn'),
+    path('signUp/', views.signUp, name="signUp"),
+    path('logout/', views.logout, name="logout"),
+    path('postsignUp/', views.postsignUp),
+    path('reset/', views.reset_password, name='reset'),
+    path('postReset/', views.postReset),
+    
+    
+]
