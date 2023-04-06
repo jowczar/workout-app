@@ -1,7 +1,8 @@
-// TODO: I copied this from tutorial, unsure if it's needed – remove if we prefer to use strings directly
-class TextConstants {
+class TextConstant {
   // Common
   static const String start = "Start";
+
+  /* TODO: These string are from tutorial. Remove them when screens are ready. */
 
   // Onboarding
   static const String onboarding1Title = "Workout anywhere";

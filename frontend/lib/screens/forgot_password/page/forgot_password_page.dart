@@ -1,5 +1,5 @@
-import 'package:workout_app/core/const/color_constants.dart';
-import 'package:workout_app/core/const/text_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
+import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/screens/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:workout_app/screens/forgot_password/widget/forgot_password_content.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(TextConstants.passwordReset, style: TextStyle(color: Colors.black, fontSize: 18)),
+          title: Text(TextConstant.passwordReset, style: TextStyle(color: Colors.black, fontSize: 18)),
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
@@ -20,7 +20,7 @@ class ForgotPasswordPage extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
           iconTheme: IconThemeData(
-            color: ColorConstants.primaryColor,
+            color: ColorConstant.primaryColor,
           )),
       body: _buildContext(context),
     );
@@ -50,7 +50,7 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 
   Future<void> forgotPasswordSuccessfullySended(BuildContext context) async {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(TextConstants.resetPasswordLinkWasSent), duration: Duration(seconds: 2)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(TextConstant.resetPasswordLinkWasSent), duration: Duration(seconds: 2)));
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
   }

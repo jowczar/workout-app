@@ -1,4 +1,4 @@
-import 'package:workout_app/core/const/color_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 55,
       decoration: BoxDecoration(
-        color: isEnabled ? ColorConstants.primaryColor : ColorConstants.disabledColor,
+        color: isEnabled ? ColorConstant.primaryColor : ColorConstant.disabledColor,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Material(
@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color: ColorConstants.white,
+                color: ColorConstant.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),

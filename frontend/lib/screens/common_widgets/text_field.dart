@@ -1,4 +1,4 @@
-import 'package:workout_app/core/const/color_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -93,13 +93,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   Color _getUserNameColor() {
     if (focusNode.hasFocus) {
-      return ColorConstants.primaryColor;
+      return ColorConstant.primaryColor;
     } else if (stateIsError) {
-      return ColorConstants.errorColor;
+      return ColorConstant.errorColor;
     } else if (widget.controller.text.isNotEmpty) {
-      return ColorConstants.textBlack;
+      return ColorConstant.textBlack;
     }
-    return ColorConstants.grey;
+    return ColorConstant.grey;
   }
 
   Widget _createTextFieldStack() {
@@ -129,29 +129,29 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
       style: TextStyle(
-        color: ColorConstants.textBlack,
+        color: ColorConstant.textBlack,
         fontSize: 16,
       ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: stateIsError ? ColorConstants.errorColor : ColorConstants.textFieldBorder.withOpacity(0.4),
+            color: stateIsError ? ColorConstant.errorColor : ColorConstant.textFieldBorder.withOpacity(0.4),
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: ColorConstants.primaryColor,
+            color: ColorConstant.primaryColor,
           ),
         ),
         hintText: widget.placeholder,
         hintStyle: TextStyle(
-          color: ColorConstants.grey,
+          color: ColorConstant.grey,
           fontSize: 16,
         ),
         filled: true,
-        fillColor: ColorConstants.textFieldBackground,
+        fillColor: ColorConstant.textFieldBackground,
       ),
       onChanged: (text) {
         setState(() {});
@@ -171,7 +171,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   //       image: AssetImage(
   //         // PathConstants.eye,
   //       ),
-  //       color: widget.controller.text.isNotEmpty ? ColorConstants.primaryColor : ColorConstants.grey,
+  //       color: widget.controller.text.isNotEmpty ? ColorConstant.primaryColor : ColorConstant.grey,
   //     ),
   //   );
   // }
@@ -183,7 +183,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         widget.errorText,
         style: TextStyle(
           fontSize: 14,
-          color: ColorConstants.errorColor,
+          color: ColorConstant.errorColor,
         ),
       ),
     );

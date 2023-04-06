@@ -1,5 +1,5 @@
-import 'package:workout_app/core/const/color_constants.dart';
-import 'package:workout_app/core/const/text_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
+import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
 import 'package:workout_app/screens/common_widgets/button.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
@@ -24,7 +24,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: ColorConstants.white,
+      color: ColorConstant.white,
       child: Stack(
         children: [
           _createMainData(context),
@@ -75,11 +75,11 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
       builder: (context, state) {
         return CustomTextField(
-          title: TextConstants.email,
+          title: TextConstant.email,
           keyboardType: TextInputType.emailAddress,
-          placeholder: TextConstants.emailPlaceholder,
+          placeholder: TextConstant.emailPlaceholder,
           controller: bloc.emailController,
-          errorText: TextConstants.emailErrorText,
+          errorText: TextConstant.emailErrorText,
           isError: _isTextFieldError,
           onTextChanged: () {
             setState(() {
@@ -98,7 +98,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
       child: BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
         builder: (context, state) {
           return CustomButton(
-            title: TextConstants.sendActivationBuild,
+            title: TextConstant.sendActivationBuild,
             isEnabled: _isButtonEnabled,
             onTap: () {
               FocusScope.of(context).unfocus();
