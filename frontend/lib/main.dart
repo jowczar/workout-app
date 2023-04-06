@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/screens/sign_in/page/sign_in_page.dart';
+import 'package:flutter/services.dart';
+import 'package:workout_app/routes/app_routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -23,9 +28,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.standard,
       ),
-      home: const SignInPage(),
+      initialRoute: AppRoutes.lpUnauthorizedScreen,
+      routes: AppRoutes.routes,
     );
   }
 }
