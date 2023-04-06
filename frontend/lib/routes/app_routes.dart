@@ -6,5 +6,5 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     lpUnauthorizedScreen: (context) => LpUnauthorizedScreen(),
-  }
+  };
 }
