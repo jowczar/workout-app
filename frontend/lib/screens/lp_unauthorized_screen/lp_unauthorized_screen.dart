@@ -16,7 +16,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
             color: ColorConstant.whiteA700,
             image: DecorationImage(
               image: AssetImage(
-                ImageConstant.imgLpunauthorized,
+                ImageConstant.imgLogo,
               ),
               fit: BoxFit.cover,
             ),
@@ -36,7 +36,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     children: [
                       CustomImageView(
-                        imagePath: ImageConstant.imgUntitled1,
+                        imagePath: ImageConstant.imgActivity,
                         height: getVerticalSize(
                           359,
                         ),

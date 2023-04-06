@@ -18,7 +18,7 @@ class SignInContent extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: ColorConstants.white,
+      color: ColorConstant.white,
       child: Stack(
         children: [
           _createMainData(context),
@@ -72,9 +72,9 @@ class SignInContent extends StatelessWidget {
   Widget _createHeader() {
     return Center(
       child: Text(
-        TextConstants.signIn,
+        TextConstant.signIn,
         style: TextStyle(
-          color: ColorConstants.textBlack,
+          color: ColorConstant.textBlack,
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -91,12 +91,12 @@ class SignInContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextField(
-              title: TextConstants.email,
+              title: TextConstant.email,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
-              placeholder: TextConstants.emailPlaceholder,
+              placeholder: TextConstant.emailPlaceholder,
               controller: bloc.emailController,
-              errorText: TextConstants.emailErrorText,
+              errorText: TextConstant.emailErrorText,
               isError: state is ShowErrorState ? !ValidationService.email(bloc.emailController.text) : false,
               onTextChanged: () {
                 bloc.add(OnTextChangeEvent());
@@ -104,10 +104,10 @@ class SignInContent extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             CustomTextField(
-              title: TextConstants.password,
-              placeholder: TextConstants.passwordPlaceholderSignIn,
+              title: TextConstant.password,
+              placeholder: TextConstant.passwordPlaceholderSignIn,
               controller: bloc.passwordController,
-              errorText: TextConstants.passwordErrorText,
+              errorText: TextConstant.passwordErrorText,
               isError: state is ShowErrorState ? !ValidationService.password(bloc.passwordController.text) : false,
               obscureText: true,
               onTextChanged: () {
@@ -126,11 +126,11 @@ class SignInContent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 21),
         child: Text(
-          TextConstants.forgotPassword,
+          TextConstant.forgotPassword,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: ColorConstants.primaryColor,
+            color: ColorConstant.primaryColor,
           ),
         ),
       ),
@@ -149,7 +149,7 @@ class SignInContent extends StatelessWidget {
         buildWhen: (_, currState) => currState is SignInButtonEnableChangedState,
         builder: (context, state) {
           return CustomButton(
-            title: TextConstants.signIn,
+            title: TextConstant.signIn,
             isEnabled: state is SignInButtonEnableChangedState ? state.isEnabled : false,
             onTap: () {
               FocusScope.of(context).unfocus();
@@ -166,16 +166,16 @@ class SignInContent extends StatelessWidget {
     return Center(
       child: RichText(
         text: TextSpan(
-          text: TextConstants.doNotHaveAnAccount,
+          text: TextConstant.doNotHaveAnAccount,
           style: TextStyle(
-            color: ColorConstants.textBlack,
+            color: ColorConstant.textBlack,
             fontSize: 18,
           ),
           children: [
             TextSpan(
-              text: " ${TextConstants.signUp}",
+              text: " ${TextConstant.signUp}",
               style: TextStyle(
-                color: ColorConstants.primaryColor,
+                color: ColorConstant.primaryColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
