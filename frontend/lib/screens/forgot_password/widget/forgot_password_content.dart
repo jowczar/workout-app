@@ -1,5 +1,5 @@
-import 'package:workout_app/core/const/color_constants.dart';
-import 'package:workout_app/core/const/text_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
+import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
 import 'package:workout_app/screens/common_widgets/button.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';

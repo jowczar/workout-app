@@ -1,5 +1,5 @@
-import 'package:workout_app/core/const/color_constants.dart';
-import 'package:workout_app/core/const/text_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
+import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/screens/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:workout_app/screens/forgot_password/widget/forgot_password_content.dart';
 import 'package:flutter/material.dart';

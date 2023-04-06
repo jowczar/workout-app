@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 // TODO: change these when design is ready
-class ColorConstants {
+class ColorConstant {
+  static Color primaryColorTest = fromHex("#6358E1");
+
   static const textColor = Color(0xFF1F2022);
   static const primaryColor = Color(0xFF6358E1);
 
@@ -21,4 +23,11 @@ class ColorConstants {
 
   static const cardioColor = Color(0xFFFCB74F);
   static const armsColor = Color(0xFF5C9BA4);
+
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
 }

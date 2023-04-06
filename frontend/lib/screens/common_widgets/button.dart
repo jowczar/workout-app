@@ -1,4 +1,4 @@
-import 'package:workout_app/core/const/color_constants.dart';
+import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
