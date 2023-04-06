@@ -78,7 +78,7 @@ flutter:
       fonts:
         - asset: assets/fonts/TekoRegular.ttf
           weight: 400
-        - asset: assets/fonts/TegoLight.ttf
+        - asset: assets/fonts/TekoLight.ttf
           weight: 300
 
   # For details regarding fonts from package dependencies,
