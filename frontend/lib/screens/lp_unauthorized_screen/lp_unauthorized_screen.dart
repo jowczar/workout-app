@@ -8,12 +8,12 @@ class LpUnauthorizedScreen extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
-        backgroundColor: ColorConstant.whiteA700,
+        backgroundColor: ColorConstant.backgroundColor,
         body: Container(
           width: size.width,
           height: size.height,
           decoration: BoxDecoration(
-            color: ColorConstant.whiteA700,
+            color: ColorConstant.backgroundColor,
             image: DecorationImage(
               image: AssetImage(
                 ImageConstant.imgLogo,
@@ -93,15 +93,6 @@ class LpUnauthorizedScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          "GODS OF FITNESS",
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                          style: AppStyle.txtTekoRegular32,
                         ),
                       ),
                     ],

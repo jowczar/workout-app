@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-// TODO: change these when design is ready
 class ColorConstant {
-  static Color primaryColorTest = fromHex("#6358E1");
+  static Color primaryColor = fromHex("#C2E8F5");
+  static Color secondaryColor= fromHex("#66689D");
+
+  static Color textColor = fromHex("#000000");
+  static Color backgroundColor= fromHex("#140E35");
+  static Color accentColor = fromHex("#E78439");
+  
 
   /* TODO: Tutorial colors, delete them once screens are ready */ 
 
-  static const textColor = Color(0xFF1F2022);
-  static const primaryColor = Color(0xFF6358E1);
+  // static const textColor = Color(0xFF1F2022);
+  // static const primaryColor = Color(0xFF6358E1);
 
   static const textBlack = Color(0xFF1F2022);
   static const white = Color(0xFFFFFFFF);
