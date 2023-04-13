@@ -29,11 +29,13 @@ def hello_django(request):
     return Response({'message:Request successfully returned! Hello Django'}, status= 200)
 
 def signIn(request):
-    return HttpResponse({'url': 'http://127.0.0.1:8000/'})
+    # return HttpResponse({'url': 'http://127.0.0.1:8000/'})
+    return render(request,"Login.html")
 
 @login_required    
 def home(request):
-    return HttpResponse({'url': 'http://127.0.0.1:8000/Home'})
+    # return HttpResponse({'url': 'http://127.0.0.1:8000/Home'})
+    return render(request,"Home.html")
  
 def postSignIn(request):
     if request.method == "POST":
@@ -64,7 +66,8 @@ def logout(request):
         return JsonResponse({'error': message})
  
 def signUp(request):
-    return HttpResponse('signUp')
+    # return HttpResponse('signUp')
+    return render(request,"Registration.html")
  
  
 def postsignUp(request):
@@ -75,7 +78,9 @@ def postsignUp(request):
         # creating a user with the given email and password
         user=authe.create_user_with_email_and_password(email,password)
         uid = user['localId']
+        print("uid: ", uid)
         idtoken = request.session['uid']
+        print("session token: ", idtoken)
         response = {'success': True}
      except:
         response = {'success': False}
