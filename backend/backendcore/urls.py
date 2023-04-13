@@ -11,6 +11,7 @@ urlpatterns = [
     path('postsignUp/', views.postsignUp),
     path('reset/', views.reset_password, name='reset'),
     path('postReset/', views.postReset),
+    path('list', views.list, name="add_list")
     
     
 ]
