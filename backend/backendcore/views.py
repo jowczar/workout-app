@@ -77,13 +77,16 @@ def postsignUp(request):
      try:
         # creating a user with the given email and password
         user=authe.create_user_with_email_and_password(email,password)
+        print("user: ", user)
         uid = user['localId']
         print("uid: ", uid)
-        idtoken = request.session['uid']
-        print("session token: ", idtoken)
+        # idtoken = request.session['uid']
+        # print("session token: ", idtoken)
         response = {'success': True}
+        print("succes")
      except:
         response = {'success': False}
+        print("you loose")
      return JsonResponse(response)
 
 
@@ -99,3 +102,44 @@ def postReset(request):
     except:
         message  = "Something went wrong, Please check the email you provided is registered or not"
         return JsonResponse({'success': False, 'message': message})
+    
+def list(request):
+    UserUID = "bzPOv7fzWhgoHoaQ4p9x5jPZTil2"
+    plans = {
+        'UserUID': UserUID,
+        'plan_name': "super turbo plan",
+        'exercise_list': {
+            'dead_lift': {
+                'set1' : {
+                    'weight': 300,
+                'reps' : 3
+                },
+                'set2' : {
+                    'weight': 300,
+                    'reps' : 3
+                },
+                'set3' : {
+                    'weight': 350,
+                    'reps' : 2
+                }
+            },
+            'squat' : {
+                'set1' : {
+                    'weight': 300,
+                'reps' : 3
+                },
+                'set1' : {
+                    'weight': 300,
+                'reps' : 1
+                }
+            },
+            'run': {
+                'distance' : 3,
+                'time' : 10
+            }
+        }
+    }
+    database.child("Data").push(plans)
+    print(plans)
+    
+    return HttpResponse("ok")
