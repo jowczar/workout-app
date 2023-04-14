@@ -1,3 +1,5 @@
+// @deprecated use common_widgets/custom_button.dart instead
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
