@@ -30,8 +30,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                       ),
                       CustomButton(
                         onTap: () {
-                          // AppRoutes.lpLoginScreen
-                          // Navigator.pushNamed(context, );
+                          Navigator.pushNamed(context, AppRoutes.signInScreen);
                         },
                         text: "Sign in",
                         width: 238,
@@ -39,8 +38,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                       SizedBox(height: 16),
                       CustomButton(
                         onTap: () {
-                          // AppRoutes.lpSignUpScreen
-                          // Navigator.pushNamed(context, );
+                          Navigator.pushNamed(context, AppRoutes.signUpScreen);
                         },
                         text: "Sign up",
                         width: 238,
