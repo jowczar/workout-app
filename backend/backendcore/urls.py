@@ -12,7 +12,8 @@ urlpatterns = [
     path('reset/', views.reset_password, name='reset'),
     path('postReset/', views.postReset),
     path('list', views.list, name="add_list"),
-    path('remove_exercise', views.remove_exercise, name="remove_exercise")
+    path('remove_exercise', views.remove_exercise, name="remove_exercise"),
+    path('remove_list', views.remove_list, name="remove_list")
     
     
 ]
