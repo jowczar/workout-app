@@ -7,7 +7,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 import pyrebase
-
+from backendcore.help.test_list import *
 config={
     "apiKey": "AIzaSyBO2fdyPfuae8loDfb2L75AsLWPURnanZY",
     "authDomain": "workout-app-e3490.firebaseapp.com",
@@ -102,44 +102,46 @@ def postReset(request):
     except:
         message  = "Something went wrong, Please check the email you provided is registered or not"
         return JsonResponse({'success': False, 'message': message})
-    
+
+
 def list(request):
+    if request.method == 'POST':
+        
+        # user_UID = "050581LFFzg0Wn0z2137OIIKclWw1"
+        # plan_name = "turbo_plan_numer1"
+        # plans = plans1
+        user_UID = request.POST.get('user_UID')
+        plan_name = request.POST.get('plan_name')
+        plans = request.POST.get('plan')
+        try:
+            database.child("Data").child(user_UID).child("plans").child(plan_name).set(plans)
+            return JsonResponse("Success")
+        except:
+            return JsonResponse("Fail")
+            
+    # return HttpResponse("add list ok")
+
+def remove_exercise(request):
+    # if request.method == 'GET':
+        # UserUID = request.GET.get('UserUID', '')
+        # plan_name = request.GET.get('plan_name', '')
+        # exercise_name = request.GET.get('plan_name', '')
+        
     UserUID = "bzPOv7fzWhgoHoaQ4p9x5jPZTil2"
-    plans = {
-        'UserUID': UserUID,
-        'plan_name': "super turbo plan",
-        'exercise_list': {
-            'dead_lift': {
-                'set1' : {
-                    'weight': 300,
-                'reps' : 3
-                },
-                'set2' : {
-                    'weight': 300,
-                    'reps' : 3
-                },
-                'set3' : {
-                    'weight': 350,
-                    'reps' : 2
-                }
-            },
-            'squat' : {
-                'set1' : {
-                    'weight': 300,
-                'reps' : 3
-                },
-                'set1' : {
-                    'weight': 300,
-                'reps' : 1
-                }
-            },
-            'run': {
-                'distance' : 3,
-                'time' : 10
-            }
-        }
-    }
-    database.child("Data").push(plans)
-    print(plans)
-    
-    return HttpResponse("ok")
+    id_key = "dipa"
+    plan_name = "super plan 2"
+    exercise_name = "OHP"
+    # database.child("Data")
+    plan = database.child("Data").get()
+    print(plan.val())
+
+    return HttpResponse("remove list ok")
+
+# def remove_list(request):
+#     # if request.method == 'GET':
+#         # UserUID = request.GET.get('UserUID', '')
+#         # plan_name = request.GET.get('plan_name', '')
+        
+#     UserUID = "bzPOv7fzWhgoHoaQ4p9x5jPZTil2"
+#     plan_name = "super plan 2"
+#     return HttpResponse("remove list ok")
