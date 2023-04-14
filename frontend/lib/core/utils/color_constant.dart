@@ -7,6 +7,8 @@ class ColorConstant {
   static Color textColor = fromHex("#000000");
   static Color backgroundColor= fromHex("#140E35");
   static Color accentColor = fromHex("#E78439");
+
+  static Color disabledColor = fromHex("#6B7C96");
   
 
   /* TODO: Tutorial colors, delete them once screens are ready */ 
@@ -22,7 +24,6 @@ class ColorConstant {
   static const textFieldBackground = Color(0xFFFBFCFF);
   static const textFieldBorder = Color(0xFFB9BBC5);
 
-  static const disabledColor = Color(0xFFE1E1E5);
   static const errorColor = Color(0xFFF25252);
 
   static const homeBackgroundColor = Color.fromRGBO(252, 252, 252, 1);
