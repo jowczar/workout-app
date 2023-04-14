@@ -1,3 +1,5 @@
+// @deprecated use common_widgets/custom_button.dart instead
+
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
 
