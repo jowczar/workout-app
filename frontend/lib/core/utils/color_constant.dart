@@ -9,6 +9,7 @@ class ColorConstant {
   static Color accentColor = fromHex("#E78439");
 
   static Color disabledColor = fromHex("#6B7C96");
+  static Color pressedColor = fromHex("#6AD7FC");
   
 
   /* TODO: Tutorial colors, delete them once screens are ready */ 
