@@ -140,3 +140,14 @@ def update_list(request):
             return JsonResponse({'message':"Success"})
         except:
             return JsonResponse({'message':"Fail"})
+        
+# get_list_of_plans
+def get_list_of_plans(request):
+    if request.method == 'POST':
+        user_UID = request.POST.get('UserUID', '')
+        try:
+            list_of_plans = database.child("Data").child(user_UID).child("plans").get()
+            result = [plan for plan in list_of_plans.val()]
+        except:
+            result = "Fail, there is no such UserUID"
+    return JsonResponse(result, safe=None)
