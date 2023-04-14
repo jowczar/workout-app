@@ -21,3 +21,5 @@ doc/api/
 *.js.map
 /backend/backendcore/__pycache__/
 /backend/backendapp/__pycache__/
+
+.DS_Store
