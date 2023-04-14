@@ -63,6 +63,24 @@ plans2 = {
         }
     }
 }
+plans22 = {
+    'exercise_list': {
+        'ohp': {
+            'set1' : {
+                'weight': 30,
+            'reps' : 3
+            },
+            'set2' : {
+                'weight': 30,
+                'reps' : 3
+            }
+        },
+        'bike': {
+            'distance' : 3,
+            'time' : 10
+        }
+    }
+}
 
 plans3 = {
     'exercise_list': {
