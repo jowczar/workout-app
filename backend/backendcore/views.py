@@ -115,11 +115,24 @@ def list(request):
         plans = request.POST.get('plan')
         try:
             database.child("Data").child(user_UID).child("plans").child(plan_name).set(plans)
-            return JsonResponse("Success")
+            return JsonResponse({'message':"Success"})
         except:
-            return JsonResponse("Fail")
+            return JsonResponse({'message':"Fail"})
             
-    # return HttpResponse("add list ok")
+
+
+def remove_list(request):
+    if request.method == 'POST':
+        user_UID = request.POST.get('user_UID')
+        plan_name = request.POST.get('plan_name')
+        # user_UID = "030381LFFzg0Wn0z2137OIIKclWw1"
+        # plan_name = "turbo_plan_numer1"
+        try:
+            database.child("Data").child(user_UID).child("plans").child(plan_name).remove()
+            return JsonResponse({'message':"Success"})
+        except:
+            return JsonResponse({'message':"Fail"})
+
 
 def remove_exercise(request):
     # if request.method == 'GET':
@@ -127,10 +140,9 @@ def remove_exercise(request):
         # plan_name = request.GET.get('plan_name', '')
         # exercise_name = request.GET.get('plan_name', '')
         
-    UserUID = "bzPOv7fzWhgoHoaQ4p9x5jPZTil2"
-    id_key = "dipa"
-    plan_name = "super plan 2"
-    exercise_name = "OHP"
+    UserUID = "030381LFFzg0Wn0z2137OIIKclWw1"
+    plan_name = "turbo_plan_numer1"
+    exercise_name = "dead_lift"
     # database.child("Data")
     plan = database.child("Data").get()
     print(plan.val())
