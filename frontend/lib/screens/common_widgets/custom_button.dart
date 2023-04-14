@@ -94,6 +94,8 @@ class CustomButton extends StatelessWidget {
     switch (variant) {
         case ButtonVariant.Secondary:
           return Colors.transparent;
+        case ButtonVariant.Google:
+          return ColorConstant.white;
         case ButtonVariant.Primary:
         default:
           return ColorConstant.primaryColor;
@@ -115,6 +117,8 @@ class CustomButton extends StatelessWidget {
     switch (variant) {
       case ButtonVariant.Secondary:
         return AppStyle.txtTekoRegular32;
+      case ButtonVariant.Google:
+        return AppStyle.txtTekoLight24;
       case ButtonVariant.Primary:
       default:
         return AppStyle.txtTekoRegular32Black900;
@@ -130,4 +134,5 @@ enum ButtonShape {
 enum ButtonVariant {
   Primary,
   Secondary,
+  Google
 }

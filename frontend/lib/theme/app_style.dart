@@ -255,4 +255,13 @@ class AppStyle {
     fontFamily: 'Lato',
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle txtTekoLight24 = TextStyle(
+    color: ColorConstant.black900,
+    fontSize: getFontSize(
+      24,
+    ),
+    fontFamily: 'Teko',
+    fontWeight: FontWeight.w300,
+  );
 }
