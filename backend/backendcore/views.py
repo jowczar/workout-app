@@ -111,9 +111,11 @@ def list(request):
         plans = request.POST.get('plan')
         try:
             database.child("Data").child(user_UID).child("plans").child(plan_name).set(plans)
-            return JsonResponse({'message':"Success"})
+            result = "Successfully stored data to the database"
         except:
-            return JsonResponse({'message':"Fail"})
+            result = "Failed to save data to the database"
+    else: result = "Error, no parameter passed" 
+    return JsonResponse(result, safe=False)
             
 
 # remove training plan
@@ -123,9 +125,11 @@ def remove_list(request):
         plan_name = request.POST.get('plan_name')
         try:
             database.child("Data").child(user_UID).child("plans").child(plan_name).remove()
-            return JsonResponse({'message':"Success"})
+            result = "Successfully deleted data from the database"
         except:
-            return JsonResponse({'message':"Fail"})
+            result = "Failed to delete data from the database"
+    else: result = "Error, no parameter passed" 
+    return JsonResponse(result, safe=False)
 
 # update list
 def update_list(request):
@@ -133,13 +137,14 @@ def update_list(request):
         user_UID = request.POST.get('UserUID', '')
         plan_name = request.POST.get('plan_name', '')
         plans = request.POST.get('plan')
-
-    
         try:
             database.child("Data").child(user_UID).child("plans").child(plan_name).update(plans)
-            return JsonResponse({'message':"Success"})
+            result = "The data has been updated."
         except:
-            return JsonResponse({'message':"Fail"})
+            result = "Database update failed"
+    else:
+        result = "Error, no parameter passed" 
+    return JsonResponse(result, safe=False)
         
 # get_list_of_plans
 def get_list_of_plans(request):
@@ -149,5 +154,22 @@ def get_list_of_plans(request):
             list_of_plans = database.child("Data").child(user_UID).child("plans").get()
             result = [plan for plan in list_of_plans.val()]
         except:
-            result = "Fail, there is no such UserUID"
-    return JsonResponse(result, safe=None)
+            result = "Failed to fetch data from database."
+    else:
+        result = "Error, no parameter passed"
+    return JsonResponse(result, safe=False)
+
+# get plan
+def get_plan(request):
+    if request.method == 'POST':
+        user_UID = request.POST.get('UserUID', '') 
+        plan_name = request.POST.get('plan_name', '')       
+        try:
+            plan = database.child("Data").child(user_UID).child("plans").child(plan_name).get()
+            result = plan.val()  
+        except:
+            result = "Failed to fetch data from database."
+    else:
+        result = "Error, no parameter passed"
+
+    return JsonResponse(result, safe=False)
