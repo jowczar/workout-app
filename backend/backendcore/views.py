@@ -103,13 +103,9 @@ def postReset(request):
         message  = "Something went wrong, Please check the email you provided is registered or not"
         return JsonResponse({'success': False, 'message': message})
 
-
+# Add new training plan
 def list(request):
     if request.method == 'POST':
-        
-        # user_UID = "050581LFFzg0Wn0z2137OIIKclWw1"
-        # plan_name = "turbo_plan_numer1"
-        # plans = plans1
         user_UID = request.POST.get('user_UID')
         plan_name = request.POST.get('plan_name')
         plans = request.POST.get('plan')
@@ -120,40 +116,27 @@ def list(request):
             return JsonResponse({'message':"Fail"})
             
 
-
+# remove training plan
 def remove_list(request):
     if request.method == 'POST':
         user_UID = request.POST.get('user_UID')
         plan_name = request.POST.get('plan_name')
-        # user_UID = "030381LFFzg0Wn0z2137OIIKclWw1"
-        # plan_name = "turbo_plan_numer1"
         try:
             database.child("Data").child(user_UID).child("plans").child(plan_name).remove()
             return JsonResponse({'message':"Success"})
         except:
             return JsonResponse({'message':"Fail"})
 
+# update list
+def update_list(request):
+    if request.method == 'POST':
+        user_UID = request.POST.get('UserUID', '')
+        plan_name = request.POST.get('plan_name', '')
+        plans = request.POST.get('plan')
 
-def remove_exercise(request):
-    # if request.method == 'GET':
-        # UserUID = request.GET.get('UserUID', '')
-        # plan_name = request.GET.get('plan_name', '')
-        # exercise_name = request.GET.get('plan_name', '')
-        
-    UserUID = "030381LFFzg0Wn0z2137OIIKclWw1"
-    plan_name = "turbo_plan_numer1"
-    exercise_name = "dead_lift"
-    # database.child("Data")
-    plan = database.child("Data").get()
-    print(plan.val())
-
-    return HttpResponse("remove list ok")
-
-# def remove_list(request):
-#     # if request.method == 'GET':
-#         # UserUID = request.GET.get('UserUID', '')
-#         # plan_name = request.GET.get('plan_name', '')
-        
-#     UserUID = "bzPOv7fzWhgoHoaQ4p9x5jPZTil2"
-#     plan_name = "super plan 2"
-#     return HttpResponse("remove list ok")
+    
+        try:
+            database.child("Data").child(user_UID).child("plans").child(plan_name).update(plans)
+            return JsonResponse({'message':"Success"})
+        except:
+            return JsonResponse({'message':"Fail"})
