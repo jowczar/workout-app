@@ -40,7 +40,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                   },
                   text: "Sign up",
                   width: 238,
-                  variant: ButtonVariant.Secondary
+                  variant: ButtonVariant.Secondary,
                 ),
               ],
             ),
