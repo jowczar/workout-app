@@ -1,8 +1,22 @@
 class TextConstant {
-  // Common
-  static const String start = "Start";
+  // Unauthorized screens
+  static const String signInButton = "Sign in";
+  static const String signUpButton = "Sign up";
+  static const String signUpWithGoogleButton = "Sign up with Google";
+  static const String changePasswordButton = "Change password";
+  static const String sendEmailbutton = "Send e-mail";
+  
+  static const String usernamePlaceholder = "Username";
+  static const String emailPlaceholder = "E-mail";
+  static const String passwordPlaceholder = "Password";
+  static const String confirmPasswordPlaceholder = "Confirm password";
+
+  static const String forgotPassword = "Forgot Password?";
+
+  // Authorized screens
 
   /* TODO: These string are from tutorial. Remove them when screens are ready. */
+  static const String start = "Start";
 
   // Onboarding
   static const String onboarding1Title = "Workout anywhere";
@@ -23,22 +37,22 @@ class TextConstant {
   static const String usernameErrorText = 'Text is required';
 
   static const String email = "Email";
-  static const String emailPlaceholder = "example@mail.com";
+  // static const String emailPlaceholder = "example@mail.com";
   static const String emailErrorText = 'Email is unvalid, please enter email properly';
 
   static const String password = "Password";
-  static const String passwordPlaceholder = "Must be at least 6 symbols";
+  // static const String passwordPlaceholder = "Must be at least 6 symbols";
   static const String passwordErrorText = 'Password should contain at least 6 characters';
 
   static const String confirmPassword = "Confirm password";
-  static const String confirmPasswordPlaceholder = "Re-enter password";
+  // static const String confirmPasswordPlaceholder = "Re-enter password";
   static const String confirmPasswordErrorText = 'Password is not the same';
 
   static const String alreadyHaveAccount = "Already have an account?";
 
   // Sing In
   static const String passwordPlaceholderSignIn = "Enter your password";
-  static const String forgotPassword = "Forgot password?";
+  // static const String forgotPassword = "Forgot password?";
 
   static const String doNotHaveAnAccount = "Do not have an account?";
 
