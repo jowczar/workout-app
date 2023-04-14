@@ -11,7 +11,8 @@ class CustomButton extends StatelessWidget {
       this.height,
       this.text,
       this.prefixWidget,
-      this.suffixWidget
+      this.suffixWidget,
+      this.disabled = false,
     }
   );
 
@@ -31,6 +32,8 @@ class CustomButton extends StatelessWidget {
 
   Widget? suffixWidget;
 
+  bool disabled;
+
   @override
   Widget build(BuildContext context) {
     return _buildButtonWidget();
@@ -40,7 +43,7 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.zero,
       child: TextButton(
-        onPressed: onTap,
+        onPressed: disabled ? null : onTap,
         style: _buildTextButtonStyle(),
         child: _buildButtonWithOrWithoutIcon(),
       ),

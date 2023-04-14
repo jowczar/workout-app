@@ -30,7 +30,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                     // Navigator.pushNamed(context, );
                   },
                   text: "Sign in",
-                  width: 238
+                  width: 238,
                 ),
                 SizedBox(height: 16),
                 CustomButton(
