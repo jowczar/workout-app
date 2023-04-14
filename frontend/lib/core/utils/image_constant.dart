@@ -16,4 +16,5 @@ class ImageConstant {
   static String imgRest = 'assets/images/rest.svg';
   static String imgSleep = 'assets/images/sleep.svg';
   static String imgSupport = 'assets/images/support.svg';
+  static String lpBackground = 'assets/lp_background.png';
 }
