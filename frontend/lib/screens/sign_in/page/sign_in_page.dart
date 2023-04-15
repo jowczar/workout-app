@@ -1,3 +1,4 @@
+import 'package:workout_app/routes/app_routes.dart';
 import 'package:workout_app/screens/forgot_password/page/forgot_password_page.dart';
 import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
 import 'package:workout_app/screens/sign_in/widget/sign_in_content.dart';
@@ -29,12 +30,15 @@ class SignInPage extends StatelessWidget {
         listener: (context, state) {
           if (state is NextForgotPasswordPageState) {
             print("next forgot password page");
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+            Navigator.pushNamed(context, AppRoutes.forgotPasswordScreen);
+            // Navigator.of(context).push(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
           } else if (state is NextSignUpPageState) {
             print("next sign up page");
+            Navigator.pushNamed(context, AppRoutes.signUpScreen);
             // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpPage()));
           } else if (state is NextTabBarPageState) {
             print("next tab bar page");
+            // unsure what this is
             // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => TabBarPage()));
           } else if (state is ErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
