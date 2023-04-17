@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/routes/app_routes.dart';
 
 void main() {
@@ -29,6 +30,11 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         visualDensity: VisualDensity.standard,
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(ColorConstant.pressedColor)
+          )
+        )
       ),
       initialRoute: AppRoutes.lpUnauthorizedScreen,
       routes: AppRoutes.routes,

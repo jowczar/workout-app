@@ -9,11 +9,12 @@ class ImageConstant {
   static String imgFailure = 'assets/images/failure.svg';
   static String imgGoogle = 'assets/images/google.svg';
   static String imgList = 'assets/images/list.svg';
-  static String imgLogo = 'assets/images/logo.svg';
+  static String imgLogo = 'assets/images/logo.png';
   static String imgLogout = 'assets/images/logout.svg';
   static String imgMenu = 'assets/images/menu.svg';
   static String imgNotification = 'assets/images/notification.svg';
   static String imgRest = 'assets/images/rest.svg';
   static String imgSleep = 'assets/images/sleep.svg';
   static String imgSupport = 'assets/images/support.svg';
+  static String lpBackground = 'assets/lp_background.png';
 }
