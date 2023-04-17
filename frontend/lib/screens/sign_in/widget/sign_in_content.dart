@@ -1,14 +1,17 @@
+import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
-import 'package:workout_app/screens/common_widgets/button.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
+import 'package:workout_app/screens/common_widgets/lp_background.dart';
+import 'package:workout_app/screens/common_widgets/or_field.dart';
 import 'package:workout_app/screens/common_widgets/text_field.dart';
 import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_app/screens/common_widgets/custom_button.dart';
 
 class SignInContent extends StatelessWidget {
   const SignInContent({Key? key}) : super(key: key);
@@ -21,9 +24,13 @@ class SignInContent extends StatelessWidget {
       color: ColorConstant.white,
       child: Stack(
         children: [
+          LpBackground.getBackground(context),
           _createMainData(context),
           BlocBuilder<SignInBloc, SignInState>(
-            buildWhen: (_, currState) => currState is LoadingState || currState is ErrorState || currState is NextTabBarPageState,
+            buildWhen: (_, currState) =>
+                currState is LoadingState ||
+                currState is ErrorState ||
+                currState is NextTabBarPageState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
@@ -47,17 +54,7 @@ class SignInContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              _createHeader(),
-              const SizedBox(height: 50),
-              _createForm(context),
-              const SizedBox(height: 20),
-              _createForgotPasswordButton(context),
-              const SizedBox(height: 40),
-              _createSignInButton(context),
-              Spacer(),
-              _createDoNotHaveAccountText(context),
-              const SizedBox(height: 30),
+              _createBorder(context),
             ],
           ),
         ),
@@ -71,14 +68,49 @@ class SignInContent extends StatelessWidget {
 
   Widget _createHeader() {
     return Center(
-      child: Text(
-        TextConstant.signIn,
-        style: TextStyle(
-          color: ColorConstant.textBlack,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+      child: Padding(
+          padding: const EdgeInsets.all(1.0),
+          child: Image.asset(ImageConstant.imgLogo)),
+    );
+  }
+
+  Widget _createBorder(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.all(30.0),
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: ColorConstant.secondaryColor,
+              width: 3.0,
+              style: BorderStyle.solid), //Border.all
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          )),
+      child: Stack(clipBehavior: Clip.none, children: <Widget>[
+        const SizedBox(height: 50),
+        Positioned(
+          top: 0,
+          left: (MediaQuery.of(context).size.width / 2) - 268,
+          child: _createHeader(),
         ),
-      ),
+        Positioned(
+          // top: (MediaQuery.of(context).size.height / 2),
+          top: 150,
+          // left: 0,
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              _createForm(context),
+              const SizedBox(height: 20),
+              _createForgotPasswordButton(context),
+              const SizedBox(height: 40),
+              _createSignInButton(context),
+              OrField.getOrField(context),
+              _createGoogleSignInButton(context),
+            ],
+          ),
+        ),
+      ]),
     );
   }
 
@@ -91,24 +123,28 @@ class SignInContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextField(
-              title: TextConstant.email,
+              title: "",
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
-              placeholder: TextConstant.emailPlaceholder,
+              placeholder: TextConstant.email,
               controller: bloc.emailController,
               errorText: TextConstant.emailErrorText,
-              isError: state is ShowErrorState ? !ValidationService.email(bloc.emailController.text) : false,
+              isError: state is ShowErrorState
+                  ? !ValidationService.email(bloc.emailController.text)
+                  : false,
               onTextChanged: () {
                 bloc.add(OnTextChangeEvent());
               },
             ),
             const SizedBox(height: 20),
             CustomTextField(
-              title: TextConstant.password,
-              placeholder: TextConstant.passwordPlaceholderSignIn,
+              title: "",
+              placeholder: TextConstant.password,
               controller: bloc.passwordController,
               errorText: TextConstant.passwordErrorText,
-              isError: state is ShowErrorState ? !ValidationService.password(bloc.passwordController.text) : false,
+              isError: state is ShowErrorState
+                  ? !ValidationService.password(bloc.passwordController.text)
+                  : false,
               obscureText: true,
               onTextChanged: () {
                 bloc.add(OnTextChangeEvent());
@@ -124,7 +160,7 @@ class SignInContent extends StatelessWidget {
     final bloc = BlocProvider.of<SignInBloc>(context);
     return GestureDetector(
       child: Padding(
-        padding: const EdgeInsets.only(left: 21),
+        padding: const EdgeInsets.only(left: 602.0),
         child: Text(
           TextConstant.forgotPassword,
           style: TextStyle(
@@ -146,16 +182,65 @@ class SignInContent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: BlocBuilder<SignInBloc, SignInState>(
-        buildWhen: (_, currState) => currState is SignInButtonEnableChangedState,
+        buildWhen: (_, currState) =>
+            currState is SignInButtonEnableChangedState,
         builder: (context, state) {
           return CustomButton(
-            title: TextConstant.signIn,
-            isEnabled: state is SignInButtonEnableChangedState ? state.isEnabled : false,
             onTap: () {
               FocusScope.of(context).unfocus();
               bloc.add(SignInTappedEvent());
             },
+            text: TextConstant.signInButton,
+            width: 238,
+            variant: ButtonVariant.Primary,
           );
+          // return CustomButton(
+          //   title: TextConstant.signIn,
+          //   isEnabled: state is SignInButtonEnableChangedState
+          //       ? state.isEnabled
+          //       : false,
+          //   onTap: () {
+          //     FocusScope.of(context).unfocus();
+          //     bloc.add(SignInTappedEvent());
+          //   },
+          // );
+        },
+      ),
+    );
+  }
+
+  Widget _createGoogleSignInButton(BuildContext context) {
+    final bloc = BlocProvider.of<SignInBloc>(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: BlocBuilder<SignInBloc, SignInState>(
+        buildWhen: (_, currState) =>
+            currState is SignInButtonEnableChangedState,
+        builder: (context, state) {
+          return CustomButton(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.signInScreen);
+            },
+            text: TextConstant.signInWithGoogleButton,
+            width: 338,
+            variant: ButtonVariant.Google,
+            prefixWidget: Container(
+              margin: getMargin(right: 12),
+              child: CustomImageView(
+                svgPath: ImageConstant.imgGoogle,
+              ),
+            ),
+          );
+          // return CustomButton(
+          //   title: TextConstant.signIn,
+          //   isEnabled: state is SignInButtonEnableChangedState
+          //       ? state.isEnabled
+          //       : false,
+          //   onTap: () {
+          //     FocusScope.of(context).unfocus();
+          //     bloc.add(SignInTappedEvent());
+          //   },
+          // );
         },
       ),
     );

@@ -106,7 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Stack(
       children: [
         _createTextField(),
-        // TODO: I had to hide obscuretext functionality because we have no icon for this, 
+        // TODO: I had to hide obscuretext functionality because we have no icon for this,
         // feel free to remove this code or add our icon when the design is finished
         // (this code comes from tutorial)
         // if (widget.obscureText) ...[
@@ -129,17 +129,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textInputAction: widget.textInputAction,
       keyboardType: widget.keyboardType,
       style: TextStyle(
-        color: ColorConstant.textBlack,
-        fontSize: 16,
+        color: ColorConstant.primaryColor,
+        fontSize: 18,
       ),
       decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
-            color: stateIsError ? ColorConstant.errorColor : ColorConstant.textFieldBorder.withOpacity(0.4),
+            color: stateIsError
+                ? ColorConstant.errorColor
+                : ColorConstant.textFieldBorder.withOpacity(0.4),
           ),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(
             color: ColorConstant.primaryColor,
@@ -148,10 +150,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintText: widget.placeholder,
         hintStyle: TextStyle(
           color: ColorConstant.grey,
-          fontSize: 16,
+          fontSize: 20,
         ),
         filled: true,
-        fillColor: ColorConstant.textFieldBackground,
+        // fillColor: ColorConstant.textFieldBackground,
       ),
       onChanged: (text) {
         setState(() {});
