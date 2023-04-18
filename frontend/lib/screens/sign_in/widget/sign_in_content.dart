@@ -54,14 +54,13 @@ class SignInContent extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: <Widget>[
-            const SizedBox(height: 50),
             Positioned(
-              top: -50,
-              left: 0,
+              top: 0,
+              left: MediaQuery.of(context).size.width / 2 - 150,
               child: _createHeader(),
             ),
             Positioned(
-              top: 236,
+              top: 193,
               left: 0,
               child: _createBorder(context),
             ),
@@ -84,7 +83,12 @@ class SignInContent extends StatelessWidget {
     return Center(
       child: Padding(
           padding: const EdgeInsets.all(1.0),
-          child: Image.asset(ImageConstant.imgLogo)),
+          child: Image.asset(
+              ImageConstant.imgLogo,
+              height: 300,
+              width: 300,
+            )
+          ),
     );
   }
 
@@ -104,7 +108,7 @@ class SignInContent extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          const SizedBox(height: 60),
+          const SizedBox(height: 30),
           _createForm(context),
           const SizedBox(height: 10),
           _createForgotPasswordButton(context),
