@@ -36,4 +36,22 @@ class AuthorizationBox extends StatelessWidget {
           ),
     );
   }
+  Widget _rednerBox(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.all(30.0),
+      width: MediaQuery.of(context).size.width - 60,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: ColorConstant.secondaryColor,
+          width: 3.0,
+          style: BorderStyle.solid
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(25),
+        )
+      ),
+      child: null
+    );
+  }
 }
