@@ -32,7 +32,7 @@ class AuthorizationBox extends StatelessWidget {
               Positioned(
                 top: 193,
                 left: 0,
-                child: _rednerBox(context),
+                child: _rednerBox(context, child),
               ),
             ]
           )
@@ -51,7 +51,7 @@ class AuthorizationBox extends StatelessWidget {
           ),
     );
   }
-  Widget _rednerBox(BuildContext context) {
+  Widget _rednerBox(BuildContext context, Widget? child) {
     return Container(
       margin: const EdgeInsets.all(30.0),
       padding: const EdgeInsets.all(30.0),
@@ -66,7 +66,7 @@ class AuthorizationBox extends StatelessWidget {
           Radius.circular(25),
         )
       ),
-      child: null
+      child: child
     );
   }
 }
