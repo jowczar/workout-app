@@ -194,16 +194,6 @@ class SignInContent extends StatelessWidget {
             width: 238,
             variant: ButtonVariant.Primary,
           );
-          // return CustomButton(
-          //   title: TextConstant.signIn,
-          //   isEnabled: state is SignInButtonEnableChangedState
-          //       ? state.isEnabled
-          //       : false,
-          //   onTap: () {
-          //     FocusScope.of(context).unfocus();
-          //     bloc.add(SignInTappedEvent());
-          //   },
-          // );
         },
       ),
     );
@@ -231,16 +221,6 @@ class SignInContent extends StatelessWidget {
               ),
             ),
           );
-          // return CustomButton(
-          //   title: TextConstant.signIn,
-          //   isEnabled: state is SignInButtonEnableChangedState
-          //       ? state.isEnabled
-          //       : false,
-          //   onTap: () {
-          //     FocusScope.of(context).unfocus();
-          //     bloc.add(SignInTappedEvent());
-          //   },
-          // );
         },
       ),
     );
