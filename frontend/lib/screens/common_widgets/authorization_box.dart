@@ -21,6 +21,20 @@ class AuthorizationBox extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: null
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                top: 0,
+                left: MediaQuery.of(context).size.width / 2 - 150,
+                child: _renderLogo(context),
+              ),
+              Positioned(
+                top: 193,
+                left: 0,
+                child: _rednerBox(context),
+              ),
+            ]
+          )
         )
       );
   }
