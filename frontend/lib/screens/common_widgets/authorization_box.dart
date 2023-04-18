@@ -20,7 +20,6 @@ class AuthorizationBox extends StatelessWidget {
         child: SizedBox (
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: null
           child: Stack(
             children: <Widget>[
               Positioned(
