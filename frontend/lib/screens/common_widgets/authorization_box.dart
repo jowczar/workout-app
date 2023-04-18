@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:workout_app/core/app_export.dart';
 
 import '../../core/utils/color_constant.dart';
 import '../../core/utils/image_constant.dart';
@@ -16,6 +17,7 @@ class AuthorizationBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double logoSize = 300;
     return SafeArea(
         child: SizedBox (
           height: MediaQuery.of(context).size.height,
@@ -24,8 +26,8 @@ class AuthorizationBox extends StatelessWidget {
             children: <Widget>[
               Positioned(
                 top: 0,
-                left: MediaQuery.of(context).size.width / 2 - 150,
-                child: _renderLogo(context),
+                left: MediaQuery.of(context).size.width / 2 - (logoSize / 2),
+                child: _renderLogo(context, logoSize),
               ),
               Positioned(
                 top: 193,
@@ -37,14 +39,14 @@ class AuthorizationBox extends StatelessWidget {
         )
       );
   }
-  Widget _renderLogo(BuildContext context) {
+  Widget _renderLogo(BuildContext context, double logoSize) {
     return Center(
       child: Padding(
           padding: const EdgeInsets.all(1.0),
           child: Image.asset(
               ImageConstant.imgLogo,
-              height: 300,
-              width: 300,
+              height: logoSize,
+              width: logoSize,
             )
           ),
     );
