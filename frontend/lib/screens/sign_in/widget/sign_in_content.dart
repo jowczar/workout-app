@@ -45,20 +45,27 @@ class SignInContent extends StatelessWidget {
     );
   }
 
-  Widget _createMainData(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+  Widget _createMainData(BuildContext context ) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: height - 30 - MediaQuery.of(context).padding.bottom,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _createBorder(context),
-            ],
-          ),
-        ),
-      ),
+      child: SizedBox (
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: <Widget>[
+            const SizedBox(height: 50),
+            Positioned(
+              top: -50,
+              left: 0,
+              child: _createHeader(),
+            ),
+            Positioned(
+              top: 236,
+              left: 0,
+              child: _createBorder(context),
+            ),
+          ]
+        )
+      )
     );
   }
 
@@ -78,39 +85,29 @@ class SignInContent extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(30.0),
       padding: const EdgeInsets.all(30.0),
+      height: 500,
+      width: MediaQuery.of(context).size.width - 60,
       decoration: BoxDecoration(
           border: Border.all(
               color: ColorConstant.secondaryColor,
               width: 3.0,
               style: BorderStyle.solid), //Border.all
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(25),
-          )),
-      child: Stack(clipBehavior: Clip.none, children: <Widget>[
-        const SizedBox(height: 50),
-        Positioned(
-          top: 0,
-          left: (MediaQuery.of(context).size.width / 2) - 268,
-          child: _createHeader(),
-        ),
-        Positioned(
-          // top: (MediaQuery.of(context).size.height / 2),
-          top: 150,
-          // left: 0,
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              _createForm(context),
-              const SizedBox(height: 20),
-              _createForgotPasswordButton(context),
-              const SizedBox(height: 40),
-              _createSignInButton(context),
-              OrField.getOrField(context),
-              _createGoogleSignInButton(context),
-            ],
-          ),
-        ),
-      ]),
+          )
+      ),
+      child: Column(
+        children: <Widget>[
+          const SizedBox(height: 60),
+          _createForm(context),
+          const SizedBox(height: 10),
+          _createForgotPasswordButton(context),
+          const SizedBox(height: 40),
+          _createSignInButton(context),
+          OrField.getOrField(context),
+          _createGoogleSignInButton(context),
+        ],
+      ),
     );
   }
 
@@ -121,6 +118,7 @@ class SignInContent extends StatelessWidget {
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             CustomTextField(
               title: "",
@@ -136,7 +134,6 @@ class SignInContent extends StatelessWidget {
                 bloc.add(OnTextChangeEvent());
               },
             ),
-            const SizedBox(height: 20),
             CustomTextField(
               title: "",
               placeholder: TextConstant.password,
@@ -158,9 +155,12 @@ class SignInContent extends StatelessWidget {
 
   Widget _createForgotPasswordButton(BuildContext context) {
     final bloc = BlocProvider.of<SignInBloc>(context);
+    var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       child: Padding(
-        padding: const EdgeInsets.only(left: 602.0),
+        padding: EdgeInsets.only(
+          left: width - 300
+        ),
         child: Text(
           TextConstant.forgotPassword,
           style: TextStyle(
