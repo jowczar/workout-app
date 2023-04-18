@@ -3,6 +3,7 @@ import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
+import 'package:workout_app/screens/common_widgets/authorization_box.dart';
 import 'package:workout_app/screens/common_widgets/back_arrow.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
@@ -55,14 +56,20 @@ class SignInContent extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Positioned(
-              top: 0,
-              left: MediaQuery.of(context).size.width / 2 - 150,
-              child: _createHeader(),
-            ),
-            Positioned(
-              top: 193,
-              left: 0,
-              child: _createBorder(context),
+              child: AuthorizationBox(
+                child: Column(
+                  children: <Widget>[
+                    const SizedBox(height: 30),
+                    _createForm(context),
+                    const SizedBox(height: 10),
+                    _createForgotPasswordButton(context),
+                    const SizedBox(height: 40),
+                    _createSignInButton(context),
+                    OrField.getOrField(context),
+                    _createGoogleSignInButton(context),
+                  ],
+                ),
+              )
             ),
             Positioned(
               top: 10,
@@ -77,48 +84,6 @@ class SignInContent extends StatelessWidget {
 
   Widget _createLoading() {
     return Loader();
-  }
-
-  Widget _createHeader() {
-    return Center(
-      child: Padding(
-          padding: const EdgeInsets.all(1.0),
-          child: Image.asset(
-              ImageConstant.imgLogo,
-              height: 300,
-              width: 300,
-            )
-          ),
-    );
-  }
-
-  Widget _createBorder(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(30.0),
-      padding: const EdgeInsets.all(30.0),
-      width: MediaQuery.of(context).size.width - 60,
-      decoration: BoxDecoration(
-          border: Border.all(
-              color: ColorConstant.secondaryColor,
-              width: 3.0,
-              style: BorderStyle.solid), //Border.all
-          borderRadius: const BorderRadius.all(
-            Radius.circular(25),
-          )
-      ),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(height: 30),
-          _createForm(context),
-          const SizedBox(height: 10),
-          _createForgotPasswordButton(context),
-          const SizedBox(height: 40),
-          _createSignInButton(context),
-          OrField.getOrField(context),
-          _createGoogleSignInButton(context),
-        ],
-      ),
-    );
   }
 
   Widget _createForm(BuildContext context) {
