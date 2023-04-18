@@ -1,7 +1,9 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
+import 'package:workout_app/screens/common_widgets/back_arrow.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
 import 'package:workout_app/screens/common_widgets/or_field.dart';
@@ -62,6 +64,11 @@ class SignInContent extends StatelessWidget {
               top: 236,
               left: 0,
               child: _createBorder(context),
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: BackArrow(),
             ),
           ]
         )
