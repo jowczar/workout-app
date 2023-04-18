@@ -24,4 +24,16 @@ class AuthorizationBox extends StatelessWidget {
         )
       );
   }
+  Widget _renderLogo(BuildContext context) {
+    return Center(
+      child: Padding(
+          padding: const EdgeInsets.all(1.0),
+          child: Image.asset(
+              ImageConstant.imgLogo,
+              height: 300,
+              width: 300,
+            )
+          ),
+    );
+  }
 }
