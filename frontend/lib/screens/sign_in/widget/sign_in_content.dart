@@ -92,7 +92,6 @@ class SignInContent extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(30.0),
       padding: const EdgeInsets.all(30.0),
-      height: 500,
       width: MediaQuery.of(context).size.width - 60,
       decoration: BoxDecoration(
           border: Border.all(
