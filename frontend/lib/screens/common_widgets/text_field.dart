@@ -130,7 +130,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       keyboardType: widget.keyboardType,
       style: TextStyle(
         color: ColorConstant.primaryColor,
-        fontSize: 18,
+        fontSize: 20,
       ),
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
@@ -138,7 +138,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderSide: BorderSide(
             color: stateIsError
                 ? ColorConstant.errorColor
-                : ColorConstant.textFieldBorder.withOpacity(0.4),
+                : ColorConstant.primaryColor.withOpacity(0.6),
           ),
         ),
         focusedBorder: UnderlineInputBorder(

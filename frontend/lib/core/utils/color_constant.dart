@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class ColorConstant {
   static Color primaryColor = fromHex("#C2E8F5");
-  static Color secondaryColor= fromHex("#66689D");
+  static Color secondaryColor = fromHex("#66689D");
 
   static Color textColor = fromHex("#000000");
-  static Color backgroundColor= fromHex("#140E35");
-  static Color accentColor = fromHex("#E78439");
+  static Color backgroundColor = fromHex("#140E35");
+  static Color menuActiveColor = fromHex("#E78439");
+  static Color menuNotActiveColor = fromHex("#FAFEFF");
 
   static Color disabledColor = fromHex("#6B7C96");
   static Color pressedColor = fromHex("#6AD7FC");
-  
 
-  /* TODO: Tutorial colors, delete them once screens are ready */ 
+  /* TODO: Tutorial colors, delete them once screens are ready */
 
   // static const textColor = Color(0xFF1F2022);
   // static const primaryColor = Color(0xFF6358E1);

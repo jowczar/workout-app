@@ -192,4 +192,18 @@ class TextConstant {
   static const sendActivationBuild = 'Send Activation Link';
   static const resetPasswordLinkWasSent =
       'Reset password link was sent on your email.';
+
+  static const String exerciseName = "Exercise name";
+  static const String time = "Time";
+  static const String planName = "Plan name";
+  static const String addExercise = "Add Exercise";
+  static const String addCardio = "Add Cardio";
+  static const String cancelButton = "Cancel";
+  static const String saveButton = "Save";
+  static const String addNewCardio = "Add New Cardio";
+  static const String addNewExercise = "Add New Exercise";
+  static const String copyLastSet = "Copy last set";
+  static const String addNewSet = "Add new set";
+  static const String weight = "Weight";
+  static const String reps = "Reps";
 }

@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:workout_app/core/app_export.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton(
-    {
-      this.variant,
-      this.shape,
-      this.onTap,
-      this.width,
-      this.height,
-      this.text,
-      this.prefixWidget,
-      this.suffixWidget,
-      this.disabled = false,
-    }
-  );
+  CustomButton({
+    this.variant,
+    this.shape,
+    this.onTap,
+    this.width,
+    this.height,
+    this.text,
+    this.prefixWidget,
+    this.suffixWidget,
+    this.disabled = false,
+  });
 
   ButtonShape? shape;
 
@@ -92,13 +90,16 @@ class CustomButton extends StatelessWidget {
 
   _setColor() {
     switch (variant) {
-        case ButtonVariant.Secondary:
-          return Colors.transparent;
-        case ButtonVariant.Google:
-          return ColorConstant.white;
-        case ButtonVariant.Primary:
-        default:
-          return ColorConstant.primaryColor;
+      case ButtonVariant.Secondary:
+      case ButtonVariant.ExerciseButtons:
+      case ButtonVariant.CancelButton:
+        return Colors.transparent;
+      case ButtonVariant.Google:
+        return ColorConstant.white;
+      case ButtonVariant.SaveButton:
+      case ButtonVariant.Primary:
+      default:
+        return ColorConstant.primaryColor;
     }
   }
 
@@ -119,6 +120,12 @@ class CustomButton extends StatelessWidget {
         return AppStyle.txtTekoRegular32;
       case ButtonVariant.Google:
         return AppStyle.txtTekoLight24;
+      case ButtonVariant.ExerciseButtons:
+        return AppStyle.txtText2WhiteA700;
+      case ButtonVariant.CancelButton:
+        return AppStyle.txtTekoRegular32;
+      case ButtonVariant.SaveButton:
+        return AppStyle.txtTekoRegular32Black900;
       case ButtonVariant.Primary:
       default:
         return AppStyle.txtTekoRegular32Black900;
@@ -134,5 +141,8 @@ enum ButtonShape {
 enum ButtonVariant {
   Primary,
   Secondary,
-  Google
+  Google,
+  ExerciseButtons,
+  CancelButton,
+  SaveButton
 }
