@@ -15,6 +15,10 @@ class ValidationService {
   }
 
   static bool confirmPassword(String password, String confirmPassword) {
+    if(password == "") {
+      return false;
+    }
+    
     return password == confirmPassword;
   }
 }
