@@ -11,17 +11,6 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(TextConstant.passwordReset, style: TextStyle(color: Colors.black, fontSize: 18)),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          iconTheme: IconThemeData(
-            color: ColorConstant.primaryColor,
-          )),
       body: _buildContext(context),
     );
   }

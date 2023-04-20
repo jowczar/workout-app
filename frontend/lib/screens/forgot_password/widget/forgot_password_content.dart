@@ -1,12 +1,16 @@
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
-import 'package:workout_app/screens/common_widgets/button.dart';
+import 'package:workout_app/screens/common_widgets/custom_button.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/text_field.dart';
 import 'package:workout_app/screens/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../common_widgets/authorization_box.dart';
+import '../../common_widgets/back_arrow.dart';
+import '../../common_widgets/lp_background.dart';
 
 class ForgotPasswordContent extends StatefulWidget {
   const ForgotPasswordContent({Key? key}) : super(key: key);
@@ -27,6 +31,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
       color: ColorConstant.white,
       child: Stack(
         children: [
+          LpBackground.getBackground(context),
           _createMainData(context),
           BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
             buildWhen: (_, currState) => currState is ForgotPasswordLoading || currState is ForgotPasswordError || currState is ForgotPasswordSuccess,
@@ -50,23 +55,55 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     return Loader();
   }
 
+  // Widget _createMainData(BuildContext context) {
+  //   double height = MediaQuery.of(context).size.height;
+  //   return SafeArea(
+  //     child: SingleChildScrollView(
+  //       child: SizedBox(
+  //         height: height - 30 - MediaQuery.of(context).padding.bottom - kToolbarHeight,
+  //         child: Column(
+  //           children: [
+  //             Spacer(flex: 2),
+  //             _createForm(context),
+  //             Spacer(flex: 3),
+  //             _createResetPasswordButton(context),
+  //             const SizedBox(height: 30),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
   Widget _createMainData(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: height - 30 - MediaQuery.of(context).padding.bottom - kToolbarHeight,
-          child: Column(
-            children: [
-              Spacer(flex: 2),
-              _createForm(context),
-              Spacer(flex: 3),
-              _createResetPasswordButton(context),
-              const SizedBox(height: 30),
-            ],
-          ),
-        ),
-      ),
+      child: SizedBox (
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: 50,
+              child: AuthorizationBox(
+                child: Column(
+                  children: <Widget>[
+                    const SizedBox(height: 50),
+                    _createForm(context),
+                    const SizedBox(height: 25),
+                    _createResetPasswordButton(context),
+                  ],
+                ),
+              )
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: BackArrow(),
+            ),
+          ]
+        )
+      )
     );
   }
 
@@ -75,7 +112,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
       builder: (context, state) {
         return CustomTextField(
-          title: TextConstant.email,
+          title: "",
           keyboardType: TextInputType.emailAddress,
           placeholder: TextConstant.emailPlaceholder,
           controller: bloc.emailController,
@@ -83,13 +120,36 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
           isError: _isTextFieldError,
           onTextChanged: () {
             setState(() {
-              _isButtonEnabled = bloc.emailController.text.length > 0;
+              // _isButtonEnabled = bloc.emailController.text.length > 0;
+              _isButtonEnabled = ValidationService.email(bloc.emailController.text);
             });
           },
         );
       },
     );
   }
+
+  //   Widget _createSignInButton(BuildContext context) {
+  //   final bloc = BlocProvider.of<SignUpBloc>(context);
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 20),
+  //     child: BlocBuilder<SignUpBloc, SignUpState>(
+  //       buildWhen: (_, currState) =>
+  //           currState is SignUpButtonEnableChangedState,
+  //       builder: (context, state) {
+  //         return CustomButton(
+  //           onTap: () {
+  //             FocusScope.of(context).unfocus();
+  //             bloc.add(SignUpTappedEvent());
+  //           },
+  //           text: TextConstant.signUp,
+  //           width: 238,
+  //           variant: ButtonVariant.Primary,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 
   Widget _createResetPasswordButton(BuildContext context) {
     final bloc = BlocProvider.of<ForgotPasswordBloc>(context);
@@ -98,8 +158,6 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
       child: BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
         builder: (context, state) {
           return CustomButton(
-            title: TextConstant.sendActivationBuild,
-            isEnabled: _isButtonEnabled,
             onTap: () {
               FocusScope.of(context).unfocus();
               if (_isButtonEnabled) {
@@ -111,6 +169,10 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
                 }
               }
             },
+            text: TextConstant.sendEmailbutton,
+            width: 238,
+            variant: ButtonVariant.Primary,
+            disabled: !_isButtonEnabled,
           );
         },
       ),
