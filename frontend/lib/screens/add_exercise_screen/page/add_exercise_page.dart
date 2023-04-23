@@ -1,4 +1,5 @@
 import 'package:workout_app/screens/add_exercise_screen/widget/add_exercise_content.dart';
+import 'package:workout_app/screens/common_widgets/custom_app_bar.dart';
 import 'package:workout_app/screens/common_widgets/custom_bottom_navigation_bar.dart';
 import 'package:workout_app/screens/forgot_password/page/forgot_password_page.dart';
 import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
@@ -16,6 +17,12 @@ class AddExercisePage extends StatelessWidget {
         body: _buildContext(context),
         bottomNavigationBar: CustomBottomNavigationBar(),
         extendBody: true,
+        appBar: PreferredSize(
+            child: CustomAppBar(), preferredSize: Size.fromHeight(150)),
+        // appBar: AppBar(
+        //     elevation: 0,
+        //     backgroundColor: Colors.amber,
+        //     leading: IconButton(icon: Icon(Icons.menu), onPressed: () {})),
         resizeToAvoidBottomInset: false);
   }
 

@@ -12,6 +12,8 @@ class ColorConstant {
   static Color disabledColor = fromHex("#6B7C96");
   static Color pressedColor = fromHex("#6AD7FC");
 
+  static Color backgroundBlackColor = fromHex("#130F12");
+
   /* TODO: Tutorial colors, delete them once screens are ready */
 
   // static const textColor = Color(0xFF1F2022);

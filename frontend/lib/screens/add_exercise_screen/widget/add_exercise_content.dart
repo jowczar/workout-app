@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_app/screens/common_widgets/custom_button.dart';
 
+final items = List<String>.generate(20, (i) => 'Item ${i + 1}');
+
 class AddExerciseContent extends StatelessWidget {
   const AddExerciseContent({Key? key}) : super(key: key);
 
@@ -68,9 +70,9 @@ class AddExerciseContent extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Stack(children: <Widget>[
-              const SizedBox(height: 600),
+              const SizedBox(height: 300),
               Padding(
-                  padding: getPadding(top: 115, right: 20),
+                  padding: getPadding(top: 15, right: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
@@ -95,9 +97,8 @@ class AddExerciseContent extends StatelessWidget {
                 isLogoEnabled: false,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 30),
                     _createForm(context),
-                    const SizedBox(height: 450),
+                    const SizedBox(height: 350),
                     Padding(
                         padding: getPadding(left: 2),
                         child: Column(
@@ -115,11 +116,6 @@ class AddExerciseContent extends StatelessWidget {
                   ],
                 ),
               )),
-              Positioned(
-                top: -40,
-                left: 10,
-                child: MiniLogo(),
-              ),
             ])));
   }
 
