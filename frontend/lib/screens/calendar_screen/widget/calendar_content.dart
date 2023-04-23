@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../../core/utils/color_constant.dart';
 import '../../common_widgets/back_arrow.dart';
@@ -7,8 +8,22 @@ import '../../common_widgets/loader.dart';
 import '../../common_widgets/lp_background.dart';
 import '../bloc/calendar_bloc.dart';
 
-class CalendarContent extends StatelessWidget {
-  const CalendarContent({Key? key}) : super(key: key);
+class CalendarContent extends StatefulWidget {
+  const CalendarContent({super.key});
+  
+  @override
+  State<StatefulWidget> createState() => _CalendarContent();
+}
+
+class _CalendarContent extends State<CalendarContent>{
+  
+  DateTime today = DateTime.now();
+
+  void _onDaySelected(DateTime day, DateTime focusedDay){
+    setState(() {
+      today = day;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +58,19 @@ class CalendarContent extends StatelessWidget {
       child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Stack(children: <Widget>[
-            Positioned(
-              top: 10,
-              left: 10,
-              child: BackArrow(),
+          child: TableCalendar(
+            locale: "en_US",
+            headerStyle: const HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true
             ),
-          ]
-        )
+            availableGestures: AvailableGestures.all,
+            firstDay: DateTime.utc(2010, 10, 16),
+            lastDay: DateTime.utc(2030, 3, 14),
+            selectedDayPredicate: (day) => isSameDay(day, today),
+            onDaySelected: _onDaySelected,
+            focusedDay: today,
+          ),
       )
     );
   }

@@ -5,6 +5,8 @@ part 'calendar_event.dart';
 part 'calendar_state.dart';
 
 class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
+  final passwordController =  DateTime.now();
+
   CalendarBloc() : super(CalendarInitial()) {
     on<CalendarEvent>((event, emit) {
       // TODO: implement event handler

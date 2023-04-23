@@ -21,7 +21,7 @@ class CalendarPage extends StatelessWidget {
       child: BlocConsumer<CalendarBloc, CalendarState>(
         buildWhen: (_, currState) => currState is CalendarInitial,
         builder: (context, state) {
-          return const CalendarContent();
+          return CalendarContent();
         },
         listener: (context, state) {},
       ),
