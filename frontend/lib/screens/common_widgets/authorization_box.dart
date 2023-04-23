@@ -33,7 +33,7 @@ class AuthorizationBox extends StatelessWidget {
                 ),
               ],
               Positioned(
-                top: isLogoEnabled ? 193 : 50,
+                top: isLogoEnabled ? 175 : 50,
                 left: 0,
                 child: _renderBox(context, child),
               ),
