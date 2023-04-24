@@ -144,19 +144,19 @@ class _CalendarContent extends State<CalendarContent>{
 
   Widget _getNormalDay(context, day, focusedDay){
     return SizedBox(
-        height: 100,
-        child: Column(
-          children: <Widget>[
-            Text(
-              day.day.toString(),
-              style: const TextStyle(color: Colors.white)
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: _getDayIcon(day),
-            )
-          ],
-        ),
+      height: 100,
+      child: Column(
+        children: <Widget>[
+          Text(
+            day.day.toString(),
+            style: const TextStyle(color: Colors.white)
+          ),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: _getDayIcon(day),
+          )
+        ],
+      ),
     );
   }
 
