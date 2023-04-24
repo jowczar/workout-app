@@ -20,9 +20,6 @@ class CalendarContent extends StatefulWidget {
 }
 
 class _CalendarContent extends State<CalendarContent>{
-  
-  DateTime today = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,7 +76,7 @@ class _CalendarContent extends State<CalendarContent>{
           firstDay: DateTime.utc(2010, 10, 16),
           lastDay: DateTime.utc(2030, 3, 14),
           onDaySelected: _onDaySelected,
-          focusedDay: today,
+          focusedDay: DateTime.now(),
           calendarBuilders: _getCalendarBuilder(),
           calendarStyle: const CalendarStyle(
             outsideDaysVisible: false,
@@ -92,9 +89,7 @@ class _CalendarContent extends State<CalendarContent>{
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay){
-    setState(() {
-      today = day;
-    });
+    print(day);
   }
 
 
