@@ -16,3 +16,9 @@ class ErrorState extends CalendarState {
 }
 
 class LoadingState extends CalendarState {}
+
+class OpenDayState extends CalendarState {
+  final DateTime day;
+
+  OpenDayState(this.day);
+}

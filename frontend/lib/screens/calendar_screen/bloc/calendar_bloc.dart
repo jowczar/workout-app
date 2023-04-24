@@ -8,8 +8,10 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
   final passwordController =  DateTime.now();
 
   CalendarBloc() : super(CalendarInitial()) {
-    on<CalendarEvent>((event, emit) {
-      // TODO: implement event handler
+    on<DayTappedEvent>((event, emit) async {
+      emit(OpenDayState(event.day));
     });
   }
 }
+
+

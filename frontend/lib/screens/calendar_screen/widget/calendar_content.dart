@@ -89,7 +89,8 @@ class _CalendarContent extends State<CalendarContent>{
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay){
-    print(day);
+    // print(day);
+    BlocProvider.of<CalendarBloc>(context).add(DayTappedEvent(day));
   }
 
 

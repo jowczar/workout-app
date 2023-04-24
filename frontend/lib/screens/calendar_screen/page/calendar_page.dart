@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/calendar_screen/bloc/calendar_bloc.dart';
 
 import '../widget/calendar_content.dart';
@@ -23,9 +24,15 @@ class CalendarPage extends StatelessWidget {
         builder: (context, state) {
           return CalendarContent();
         },
+        listenWhen: (_, currState) => 
+          currState is OpenDayState,
         listener: (context, state) {
           if(state is CalendarInitial){
             print("object");
+          } else if (state is OpenDayState) {
+            //TODO: After click, navigate user to workout plan screen
+            //Navigator.pushNamed(context, AppRoutes.signInScreen, arguments: state.day);
+            print(state.day);
           }
         },
       ),
