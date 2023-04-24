@@ -23,7 +23,11 @@ class CalendarPage extends StatelessWidget {
         builder: (context, state) {
           return CalendarContent();
         },
-        listener: (context, state) {},
+        listener: (context, state) {
+          if(state is CalendarInitial){
+            print("object");
+          }
+        },
       ),
     );
   }

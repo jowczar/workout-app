@@ -8,8 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:workout_app/core/app_export.dart';
 
-import '../../../core/utils/color_constant.dart';
-import '../../common_widgets/back_arrow.dart';
 import '../../common_widgets/loader.dart';
 import '../../common_widgets/lp_background.dart';
 import '../bloc/calendar_bloc.dart';
