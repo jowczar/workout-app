@@ -10,6 +10,7 @@ import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
 import 'package:workout_app/screens/common_widgets/mini_logo.dart';
 import 'package:workout_app/screens/common_widgets/or_field.dart';
+import 'package:workout_app/screens/common_widgets/slidable_button.dart';
 import 'package:workout_app/screens/common_widgets/text_field.dart';
 import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -181,6 +182,7 @@ class AddExerciseContent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 40),
+            SlidableButton(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

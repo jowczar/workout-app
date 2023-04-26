@@ -11,6 +11,7 @@ import 'package:workout_app/screens/sign_in/widget/sign_in_content.dart';
 // import 'package:workout_app/screens/tab_bar/page/tab_bar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_app/screens/sign_in/widget/test.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class SignInPage extends StatelessWidget {
         buildWhen: (_, currState) => currState is SignInInitial,
         builder: (context, state) {
           return const SignInContent();
+          // return const TestTest()
         },
         listenWhen: (_, currState) =>
             currState is NextForgotPasswordPageState ||

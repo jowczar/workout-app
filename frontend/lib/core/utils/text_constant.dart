@@ -206,4 +206,5 @@ class TextConstant {
   static const String addNewSet = "Add new set";
   static const String weight = "Weight";
   static const String reps = "Reps";
+  static const String deadlift = "Deadlift                    3x5";
 }
