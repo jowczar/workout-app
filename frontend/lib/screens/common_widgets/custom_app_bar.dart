@@ -1,5 +1,6 @@
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:workout_app/screens/common_widgets/custom_drawer.dart';
 import 'package:workout_app/screens/common_widgets/mini_logo.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -23,7 +24,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: EdgeInsets.all(20),
                   child: IconButton(
                     icon: Icon(Icons.menu, color: Colors.white),
-                    onPressed: () {},
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
                     iconSize: 44,
                   )))
         ],
