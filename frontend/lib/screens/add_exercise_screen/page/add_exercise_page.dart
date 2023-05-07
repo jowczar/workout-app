@@ -1,9 +1,9 @@
+import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
 import 'package:workout_app/screens/add_exercise_screen/widget/add_exercise_content.dart';
 import 'package:workout_app/screens/common_widgets/custom_app_bar.dart';
 import 'package:workout_app/screens/common_widgets/custom_bottom_navigation_bar.dart';
 import 'package:workout_app/screens/common_widgets/custom_drawer.dart';
 import 'package:workout_app/screens/forgot_password/page/forgot_password_page.dart';
-import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,19 +28,14 @@ class AddExercisePage extends StatelessWidget {
         resizeToAvoidBottomInset: false);
   }
 
-  BlocProvider<SignInBloc> _buildContext(BuildContext context) {
-    return BlocProvider<SignInBloc>(
-      create: (BuildContext context) => SignInBloc(),
-      child: BlocConsumer<SignInBloc, SignInState>(
-        buildWhen: (_, currState) => currState is SignInInitial,
+  BlocProvider<AddExerciseScreenBloc> _buildContext(BuildContext context) {
+    return BlocProvider<AddExerciseScreenBloc>(
+      create: (BuildContext context) => AddExerciseScreenBloc(),
+      child: BlocConsumer<AddExerciseScreenBloc, AddExerciseScreenState>(
         builder: (context, state) {
           return const AddExerciseContent();
         },
-        listenWhen: (_, currState) =>
-            currState is NextForgotPasswordPageState ||
-            currState is NextSignUpPageState ||
-            currState is NextTabBarPageState ||
-            currState is ErrorState,
+        listenWhen: (_, currState) => currState is ErrorState,
         listener: (context, state) {
           // if (state is NextForgotPasswordPageState) {
           //   print("next forgot password page");
