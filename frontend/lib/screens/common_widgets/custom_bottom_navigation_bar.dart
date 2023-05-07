@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/core/app_export.dart';
+import 'package:workout_app/screens/challenges_main_screen/page/challenges_main_page.dart';
 import 'package:workout_app/screens/create_workout_plan_screen/page/create_workout_plan_page.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -77,6 +78,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                             onPressed: () {
                               setState(() {
                                 selectedIndex = 3;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChallengesMainPage(selectedIndex: 3),
+                                  ),
+                                );
                               });
                             })
                       ],

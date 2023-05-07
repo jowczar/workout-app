@@ -209,4 +209,8 @@ class TextConstant {
   static const String deadlift = "Deadlift                    3x5";
   static const String createYourOwnTrainingPlan =
       "Create Your Own Training Plan";
+  static const String addNewChallenge = "+";
+  static const String challengeName = "Challenge";
+  static const String points = "Points";
+  static const String addNewChallengeHeader = "Add New Challenge";
 }

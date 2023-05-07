@@ -6,6 +6,8 @@ import 'package:workout_app/screens/forgot_password/page/forgot_password_page.da
 import 'package:workout_app/screens/add_cardio_screen/page/add_cardio_page.dart';
 import 'package:workout_app/screens/add_exercise_screen/page/add_exercise_page.dart';
 import 'package:workout_app/screens/create_workout_plan_screen/page/create_workout_plan_page.dart';
+import 'package:workout_app/screens/challenges_main_screen/page/challenges_main_page.dart';
+import 'package:workout_app/screens/add_new_challenge_screen/page/add_new_challenge_page.dart';
 
 class AppRoutes {
   static const String lpUnauthorizedScreen = '/lp_unauthorized_screen';
@@ -16,6 +18,8 @@ class AppRoutes {
   static const String addCardioScreen = "/add_cardio";
   static const String addExerciseScreen = "/add_exercise";
   static const String createWorkoutPlanScreen = "/create_workout_plan";
+  static const String challengesScreen = '/challenges';
+  static const String addNewChallengeScreen = '/add_new_challenge';
 
   static Map<String, WidgetBuilder> routes = {
     lpUnauthorizedScreen: (context) => LpUnauthorizedScreen(),
@@ -25,6 +29,8 @@ class AppRoutes {
     addCardioScreen: (context) => AddCardioPage(selectedIndex: 2),
     addExerciseScreen: (context) => AddExercisePage(selectedIndex: 2),
     createWorkoutPlanScreen: (context) =>
-        CreateWorkoutPlanPage(selectedIndex: 2)
+        CreateWorkoutPlanPage(selectedIndex: 2),
+    challengesScreen: (context) => ChallengesMainPage(selectedIndex: 3),
+    addNewChallengeScreen: (context) => AddNewChallengePage(selectedIndex: 3),
   };
 }
