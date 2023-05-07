@@ -58,7 +58,7 @@ class AddCardioContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const <Widget>[
                 Text(
-                  TextConstant.addNewExercise,
+                  TextConstant.addNewCardio,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -129,6 +129,15 @@ class AddCardioContent extends StatelessWidget {
               onTextChanged: () {},
             ),
             const SizedBox(height: 30),
+            CustomTextField(
+              title: "",
+              textInputAction: TextInputAction.next,
+              placeholder: TextConstant.time,
+              controller: TextEditingController(),
+              errorText: "",
+              isError: false,
+              onTextChanged: () {},
+            ),
           ],
         );
       },

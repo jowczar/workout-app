@@ -5,6 +5,7 @@ import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen
 import 'package:workout_app/screens/add_exercise_screen/page/add_exercise_page.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
+import 'package:workout_app/screens/common_widgets/slidable_button.dart';
 import 'package:workout_app/screens/common_widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,9 @@ class CreateWorkoutPlanContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Tymczasowa lista elementów
+    List<String> exercises = ['Deadlift', 'Squat'];
+
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -24,7 +28,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
       child: Stack(
         children: [
           LpBackground.getBackground(context),
-          _createMainData(context),
+          _createMainData(context, exercises),
           BlocBuilder<CreateWorkoutPlanScreenBloc,
               CreateWorkoutPlanScreenState>(
             buildWhen: (_, currState) =>
@@ -45,7 +49,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
     );
   }
 
-  Widget _createMainData(BuildContext context) {
+  Widget _createMainData(BuildContext context, List<String> exercises) {
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -72,44 +76,57 @@ class CreateWorkoutPlanContent extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: <Widget>[
-                    _createForm(context),
-                    const SizedBox(height: 60),
-                    Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: CustomButton(
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        if (exercises.isNotEmpty) _createForm(context),
+                        const SizedBox(height: 60),
+                        for (String exercise in exercises)
+                          SlidableButton(
+                            exerciseName: exercise,
+                          ),
+                        const SizedBox(height: 70),
+                        CustomButton(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AddExercisePage(selectedIndex: 2)),
+                              );
+                            },
+                            text: TextConstant.addExercise),
+                        const SizedBox(height: 20),
+                        CustomButton(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      AddExercisePage(selectedIndex: 2)),
+                                      AddCardioPage(selectedIndex: 2)),
                             );
                           },
-                          text: TextConstant.addExercise),
+                          variant: ButtonVariant.Secondary,
+                          text: TextConstant.addCardio,
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: CustomButton(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AddCardioPage(selectedIndex: 2)),
-                          );
-                        },
-                        variant: ButtonVariant.Secondary,
-                        text: TextConstant.addCardio,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                if (exercises.isNotEmpty)
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: _createSaveButton(context),
+                    ),
+                  ),
+              ],
             ),
           ),
         ]),
@@ -117,11 +134,28 @@ class CreateWorkoutPlanContent extends StatelessWidget {
     );
   }
 
+  Widget _createSaveButton(BuildContext context) {
+    final bloc = BlocProvider.of<CreateWorkoutPlanScreenBloc>(context);
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: BlocBuilder<CreateWorkoutPlanScreenBloc,
+            CreateWorkoutPlanScreenState>(builder: (context, state) {
+          return CustomButton(
+            onTap: () {
+              // Zapisz dane treningu
+            },
+            text: TextConstant.save,
+            width: 238.0,
+            variant: ButtonVariant.SaveButton,
+          );
+        }));
+  }
+
   Widget _createForm(BuildContext context) {
     return CustomTextField(
       title: "",
       textInputAction: TextInputAction.next,
-      placeholder: TextConstant.exerciseName,
+      placeholder: TextConstant.planName,
       controller: TextEditingController(),
       errorText: "",
       isError: false,
