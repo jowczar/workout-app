@@ -4,7 +4,10 @@ import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/create_workout_plan_screen/page/create_workout_plan_page.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({Key? key}) : super(key: key);
+  final int selectedIndex;
+
+  const CustomBottomNavigationBar({Key? key, required this.selectedIndex})
+      : super(key: key);
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -13,6 +16,12 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.selectedIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +65,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateWorkoutPlanPage()),
+                                    builder: (context) =>
+                                        CreateWorkoutPlanPage(selectedIndex: 2),
+                                  ),
                                 );
                               });
                             }),

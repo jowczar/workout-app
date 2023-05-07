@@ -22,8 +22,9 @@ class AppRoutes {
     signInScreen: (context) => SignInPage(),
     signUpScreen: (context) => SignUpPage(),
     forgotPasswordScreen: (context) => ForgotPasswordPage(),
-    addCardioScreen: (context) => AddCardioPage(),
-    addExerciseScreen: (context) => AddExercisePage(),
-    createWorkoutPlanScreen: (context) => CreateWorkoutPlanPage()
+    addCardioScreen: (context) => AddCardioPage(selectedIndex: 2),
+    addExerciseScreen: (context) => AddExercisePage(selectedIndex: 2),
+    createWorkoutPlanScreen: (context) =>
+        CreateWorkoutPlanPage(selectedIndex: 2)
   };
 }

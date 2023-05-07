@@ -207,4 +207,6 @@ class TextConstant {
   static const String weight = "Weight";
   static const String reps = "Reps";
   static const String deadlift = "Deadlift                    3x5";
+  static const String createYourOwnTrainingPlan =
+      "Create Your Own Training Plan";
 }

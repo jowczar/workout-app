@@ -10,13 +10,17 @@ import 'package:workout_app/screens/create_workout_plan_screen/bloc/create_worko
 import 'package:workout_app/screens/create_workout_plan_screen/widget/create_workout_plan_content.dart';
 
 class CreateWorkoutPlanPage extends StatelessWidget {
-  const CreateWorkoutPlanPage({Key? key}) : super(key: key);
+  final int selectedIndex;
+
+  const CreateWorkoutPlanPage({Key? key, required this.selectedIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: _buildContext(context),
-        bottomNavigationBar: CustomBottomNavigationBar(),
+        bottomNavigationBar:
+            CustomBottomNavigationBar(selectedIndex: selectedIndex),
         extendBody: true,
         appBar: PreferredSize(
             child: CustomAppBar(), preferredSize: Size.fromHeight(150)),
