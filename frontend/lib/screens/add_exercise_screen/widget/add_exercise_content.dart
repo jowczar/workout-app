@@ -19,6 +19,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_app/screens/common_widgets/custom_button.dart';
+import 'package:workout_app/screens/create_workout_plan_screen/page/create_workout_plan_page.dart';
 
 final items = List<String>.generate(20, (i) => 'Item ${i + 1}');
 
@@ -221,7 +222,12 @@ class AddExerciseContent extends StatelessWidget {
           return CustomButton(
             onTap: () {
               FocusScope.of(context).unfocus();
-              bloc.add(CancelButtonTappedEvent());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CreateWorkoutPlanPage(selectedIndex: 2),
+                ),
+              );
             },
             text: TextConstant.cancelButton,
             width: 238,

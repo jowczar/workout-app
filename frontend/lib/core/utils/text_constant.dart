@@ -213,4 +213,5 @@ class TextConstant {
   static const String challengeName = "Challenge";
   static const String points = "Points";
   static const String addNewChallengeHeader = "Add New Challenge";
+  static const String done = "Done";
 }
