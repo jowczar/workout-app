@@ -22,3 +22,5 @@ class OpenDayState extends CalendarState {
 
   OpenDayState(this.day);
 }
+
+class LoadedState extends CalendarState {}

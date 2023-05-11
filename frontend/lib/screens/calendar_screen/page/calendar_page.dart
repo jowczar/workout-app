@@ -22,16 +22,17 @@ class CalendarPage extends StatelessWidget {
       child: BlocConsumer<CalendarBloc, CalendarState>(
         buildWhen: (_, currState) => currState is CalendarInitial,
         builder: (context, state) {
-          return CalendarContent();
+          return const CalendarContent();
         },
-        listenWhen: (_, currState) => 
-          currState is OpenDayState,
+        listenWhen: (_, currState) =>
+            currState is CalendarInitial || currState is OpenDayState,
         listener: (context, state) {
-          if(state is CalendarInitial){
+          if (state is CalendarInitial) {
             print("object");
           } else if (state is OpenDayState) {
-            //TODO: After click, navigate user to workout plan screen
-            //Navigator.pushNamed(context, AppRoutes.signInScreen, arguments: state.day);
+            //After click, navigate user to workout plan screen
+
+            // Navigator.pushNamed(context, AppRoutes.signInScreen, arguments: state.day);
             print(state.day);
           }
         },
@@ -39,3 +40,7 @@ class CalendarPage extends StatelessWidget {
     );
   }
 }
+
+//date
+//ikona
+//kolor
