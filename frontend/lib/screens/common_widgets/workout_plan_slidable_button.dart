@@ -39,6 +39,10 @@ class WorkoutPlanSlidableButton extends StatelessWidget {
         padding: EdgeInsets.only(top: 15, left: 8, right: 8, bottom: 15),
         child: CustomButton(
             onTap: () {
+              // Navigator.pushNamed(context, AppRoutes.workoutPlanScreen, arguments: {
+              //   exerciseId: exerciseId,
+              //   exerciseName: exerciseName,
+              // });
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -1,7 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/add_cardio_screen/page/add_cardio_page.dart';
-import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
+// import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
 // import 'package:workout_app/screens/add_exercise_screen/page/add_exercise_page.dart';
 import 'package:workout_app/screens/common_widgets/exercise.dart';
 import 'package:workout_app/screens/common_widgets/exercise_tile.dart';
@@ -20,10 +20,10 @@ import 'package:workout_app/screens/workout_plan_screen/bloc/workout_plan_screen
 //
 
 class WorkoutPlanContent extends StatelessWidget {
-  final int exerciseId;
-  final String exerciseName;
+  int exerciseId;
+  String exerciseName;
 
-  const WorkoutPlanContent({
+  WorkoutPlanContent({
     required this.exerciseId,
     required this.exerciseName,
     Key? key,
@@ -31,33 +31,8 @@ class WorkoutPlanContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Exercise> exercises = [
-      Exercise(
-        name: 'Deadlift 3x5',
-        sets: [
-          SetInfo(weight: 130, reps: 5),
-          SetInfo(weight: 140, reps: 5),
-          SetInfo(weight: 150, reps: 5),
-        ],
-      ),
-      Exercise(
-        name: 'Squat 3x5',
-        sets: [
-          SetInfo(weight: 130, reps: 5),
-          SetInfo(weight: 140, reps: 5),
-          SetInfo(weight: 150, reps: 5),
-        ],
-      ),
-      Exercise(
-        name: 'Bench Press 3x5',
-        sets: [
-          SetInfo(weight: 130, reps: 5),
-          SetInfo(weight: 140, reps: 5),
-          SetInfo(weight: 150, reps: 5),
-        ],
-      ),
-    ];
-
+    // List<Exercise> exercises = [];
+    BlocProvider.of<WorkoutPlanScreenBloc>(context).add(WorkoutPlanInitEvent());
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -65,17 +40,16 @@ class WorkoutPlanContent extends StatelessWidget {
       child: Stack(
         children: [
           LpBackground.getBackground(context),
-          _createMainData(context, exercises),
           BlocBuilder<WorkoutPlanScreenBloc, WorkoutPlanScreenState>(
             buildWhen: (_, currState) =>
                 currState is LoadingState ||
                 currState is ErrorState ||
-                currState is NextTabBarPageState,
+                currState is LoadedState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is ErrorState || state is NextTabBarPageState) {
-                return SizedBox();
+              } else if (state is LoadedState) {
+                return _createMainData(context, state.data);
               }
               return SizedBox();
             },

@@ -27,7 +27,7 @@ class WorkoutMainScreenBloc extends Bloc<WorkoutMainScreenEvent, WorkoutMainScre
 
     emit(LoadingState());
 
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
 
     List<Map<String, dynamic>> newList = [];
     for(var i = 0; i <= Random().nextInt(3) + 2; i++){
