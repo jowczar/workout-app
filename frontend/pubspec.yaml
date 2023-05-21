@@ -41,6 +41,7 @@ dependencies:
   flutter_svg_provider: ^1.0.3
   flutter_slidable: ^3.0.0
   indexed: ^0.0.8
+  table_calendar: ^3.0.8
 
 dev_dependencies:
   flutter_test:
