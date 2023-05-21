@@ -17,6 +17,7 @@ import 'package:workout_app/screens/create_workout_plan_screen/page/create_worko
 // import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
 import 'package:workout_app/screens/workout_main_screen/bloc/workout_main_screen_bloc.dart';
 import 'package:workout_app/screens/common_widgets/workout_plan_slidable_button.dart';
+import '../../../data/training_plan.dart';
 import '../bloc/workout_main_screen_bloc.dart';
 
 class WorkoutMainContent extends StatefulWidget  {
