@@ -81,7 +81,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
   Future<void> _fetchDaysData(DateTime dateStart, DateTime dateEnd) async {
     print('Start: $dateStart || End: $dateEnd');
 
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
 
     for(var i = 0; i <= dateStart.difference(dateEnd).inDays.abs(); i++){
       if(!months.contains(DateFormatter.MMyyyy(DateTime(dateStart.year, dateStart.month, dateStart.day + i)))){
