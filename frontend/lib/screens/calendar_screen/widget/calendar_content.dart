@@ -89,7 +89,8 @@ class _CalendarContent extends State<CalendarContent> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    // print(day);
+    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context).daysMap[DateFormatter.ddMMyyyy(day)];
+    print(calendarDay);
     // BlocProvider.of<CalendarBloc>(context).add(DayTappedEvent(day));
     // BlocProvider.of<CalendarBloc>(context).add(FetchCalendarDataEvent());
   }
@@ -126,7 +127,6 @@ class _CalendarContent extends State<CalendarContent> {
     return CalendarBuilders(
         defaultBuilder: _getNormalDay,
         todayBuilder: _getToday,
-        
         dowBuilder: _getDow);
   }
 
