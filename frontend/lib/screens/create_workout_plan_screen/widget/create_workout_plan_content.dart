@@ -1,7 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/add_cardio_screen/page/add_cardio_page.dart';
-import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
 import 'package:workout_app/screens/add_exercise_screen/page/add_exercise_page.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
@@ -38,14 +37,10 @@ class CreateWorkoutPlanContent extends StatelessWidget {
           BlocBuilder<CreateWorkoutPlanScreenBloc,
               CreateWorkoutPlanScreenState>(
             buildWhen: (_, currState) =>
-                currState is LoadingState ||
-                currState is ErrorState ||
-                currState is NextTabBarPageState,
+                currState is LoadingState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is ErrorState || state is NextTabBarPageState) {
-                return SizedBox();
               }
               return SizedBox();
             },
@@ -148,7 +143,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
             CreateWorkoutPlanScreenState>(builder: (context, state) {
           return CustomButton(
             onTap: () {
-              // Zapisz dane treningu
+              bloc.add(SaveTrainingPlanEvent());
             },
             text: TextConstant.save,
             width: 238.0,

@@ -10,8 +10,17 @@ class CreateWorkoutPlanScreenBloc extends Bloc<CreateWorkoutPlanScreenEvent, Cre
   final nameController = TextEditingController();
 
   CreateWorkoutPlanScreenBloc() : super(CreateWorkoutPlanScreenInitial()) {
-    on<CreateWorkoutPlanScreenEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<CreateWorkoutPlanScreenEvent>((event, emit) {});
+    on<SaveTrainingPlanEvent>(_saveTrainingPlan);
+  }
+
+  Future<void> _saveTrainingPlan(
+    SaveTrainingPlanEvent event,
+    Emitter<CreateWorkoutPlanScreenState> emit
+  ) async {
+    print(nameController.text);
+    emit(LoadingState());
+    await Future.delayed(const Duration(seconds: 2));
+
   }
 }
