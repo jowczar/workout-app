@@ -1,4 +1,3 @@
-import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
 import 'package:workout_app/screens/challenges_main_screen/bloc/challenges_main_screen_bloc.dart';
 import 'package:workout_app/screens/challenges_main_screen/widget/challenges_main_content.dart';
 import 'package:workout_app/screens/common_widgets/custom_app_bar.dart';
@@ -32,9 +31,9 @@ class ChallengesMainPage extends StatelessWidget {
       create: (BuildContext context) => ChallengesMainScreenBloc(),
       child: BlocConsumer<ChallengesMainScreenBloc, ChallengesMainScreenState>(
         builder: (context, state) {
-          return const ChallengesMainContent(points: 400);
+          return const ChallengesMainContent();
         },
-        listenWhen: (_, currState) => currState is ErrorState,
+        listenWhen: (_, currState) => currState is LoadedState,
         listener: (context, state) {},
       ),
     );

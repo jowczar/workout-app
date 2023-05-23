@@ -1,5 +1,5 @@
 import 'package:workout_app/core/app_export.dart';
-import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
+import 'package:workout_app/data/challenge.dart';
 import 'package:workout_app/screens/add_new_challenge_screen/page/add_new_challenge_page.dart';
 import 'package:workout_app/screens/challenges_main_screen/bloc/challenges_main_screen_bloc.dart';
 import 'package:workout_app/screens/common_widgets/challenge_slidable_button.dart';
@@ -12,15 +12,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_app/screens/common_widgets/custom_button.dart';
 
 class ChallengesMainContent extends StatelessWidget {
-  final int points;
+  // final int points;
 
-  const ChallengesMainContent({Key? key, required this.points})
+  const ChallengesMainContent({Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Tymczasowa lista elementów
-    List<String> exercises = ['Deadlift: 200kg', 'Squat: 160kg'];
+    // List<String> exercises = ['Deadlift: 200kg', 'Squat: 160kg'];
+    BlocProvider.of<ChallengesMainScreenBloc>(context).add(ChallengesMainInitEvent());
 
     return Container(
       height: double.infinity,
@@ -29,16 +30,17 @@ class ChallengesMainContent extends StatelessWidget {
       child: Stack(
         children: [
           LpBackground.getBackground(context),
-          _createMainData(context, exercises),
           BlocBuilder<ChallengesMainScreenBloc, ChallengesMainScreenState>(
             buildWhen: (_, currState) =>
                 currState is LoadingState ||
-                currState is ErrorState ||
-                currState is NextTabBarPageState,
+                currState is LoadedState ||
+                currState is ErrorState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is ErrorState || state is NextTabBarPageState) {
+              } else if (state is LoadedState){
+                return _createMainData(context, state.data);
+              } else if (state is ErrorState) {
                 return SizedBox();
               }
               return SizedBox();
@@ -49,7 +51,12 @@ class ChallengesMainContent extends StatelessWidget {
     );
   }
 
-  Widget _createMainData(BuildContext context, List<String> exercises) {
+  Widget _createMainData(BuildContext context, List<Challenge> challenges) {
+    print(challenges[0].name);
+    int points = challenges.reduce((value, element) {
+      return Challenge(name: value.name, points: value.points + element.points);
+    }).points;
+
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -85,12 +92,13 @@ class ChallengesMainContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         const SizedBox(height: 60),
-                        for (int i = 0; i < exercises.length; i++) ...[
+                        for (int i = 0; i < challenges.length; i++) ...[
                           ChallengeSlidableButton(
-                            exerciseName: exercises[i],
-                            points: 200,
+                            id: challenges[i].id,
+                            exerciseName: challenges[i].name,
+                            points: challenges[i].points,
                           ),
-                          if (i < exercises.length - 1)
+                          if (i < challenges.length - 1)
                             SizedBox(
                                 height: 20), // adjust the space between items
                         ],

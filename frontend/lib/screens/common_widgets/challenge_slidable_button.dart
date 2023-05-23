@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:workout_app/core/app_export.dart';
 
+import '../challenges_main_screen/bloc/challenges_main_screen_bloc.dart';
+
 class ChallengeSlidableButton extends StatelessWidget {
+  final int id;
   final String exerciseName;
   final int points;
 
   const ChallengeSlidableButton({
+    required this.id,
     required this.exerciseName,
     required this.points,
     Key? key,
@@ -25,7 +30,7 @@ class ChallengeSlidableButton extends StatelessWidget {
               bottomRight: Radius.circular(30),
             ),
             onPressed: ((context) {
-              // delete something
+              BlocProvider.of<ChallengesMainScreenBloc>(context).add(ChallengesMainInitEvent());
             }),
             icon: Icons.delete,
             foregroundColor: Color.fromARGB(255, 185, 100, 94),
