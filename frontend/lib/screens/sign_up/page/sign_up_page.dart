@@ -1,10 +1,13 @@
 import 'package:workout_app/screens/forgot_password/page/forgot_password_page.dart';
-import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
-import 'package:workout_app/screens/sign_in/widget/sign_in_content.dart';
+// import 'package:workout_app/screens/sign_in/bloc/sign_in_bloc.dart';
+// import 'package:workout_app/screens/sign_in/widget/sign_in_content.dart';
 // import 'package:workout_app/screens/sign_up/page/sign_up_page.dart';
 // import 'package:workout_app/screens/tab_bar/page/tab_bar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_app/screens/sign_up/widget/sign_up_content.dart';
+
+import '../bloc/sign_up_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -16,13 +19,13 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  BlocProvider<SignInBloc> _buildContext(BuildContext context) {
-    return BlocProvider<SignInBloc>(
-      create: (BuildContext context) => SignInBloc(),
-      child: BlocConsumer<SignInBloc, SignInState>(
-        buildWhen: (_, currState) => currState is SignInInitial,
+  BlocProvider<SignUpBloc> _buildContext(BuildContext context) {
+    return BlocProvider<SignUpBloc>(
+      create: (BuildContext context) => SignUpBloc(),
+      child: BlocConsumer<SignUpBloc, SignUpState>(
+        buildWhen: (_, currState) => currState is SignUpInitial,
         builder: (context, state) {
-          return const SignInContent();
+          return const SignUpContent();
         },
         listenWhen: (_, currState) =>
             currState is NextForgotPasswordPageState ||

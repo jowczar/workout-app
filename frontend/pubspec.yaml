@@ -43,6 +43,7 @@ dependencies:
   indexed: ^0.0.8
   table_calendar: ^3.0.8
   firebase_auth: ^4.6.1
+  firebase_core: ^2.13.0
 
 dev_dependencies:
   flutter_test:
