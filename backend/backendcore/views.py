@@ -173,3 +173,35 @@ def get_plan(request):
         result = "Error, no parameter passed"
 
     return JsonResponse(result, safe=False)
+
+
+def challenge(request):
+    user_UID = request.headers.get('UserUID')
+
+    if request.method == 'GET':
+        try:
+            challenges = database.child("Data").child(user_UID).child("challenge").get()
+            data = challenges.val()
+
+            result = []
+
+            for key, value in data.items():
+                item = {'id': key, 'name': value['name'], 'points': value['points']}
+                result.append(item)
+        except:
+            result = []
+
+
+    elif request.method == 'POST':
+        result = database.child("Data").child(user_UID).child("challenge").push(
+            {
+                'name': request.POST.get('name'),
+                'points': request.POST.get('points')
+            }
+        )
+
+
+    else:
+        result = "Error, no parameter passed"
+
+    return JsonResponse(result, safe=False)

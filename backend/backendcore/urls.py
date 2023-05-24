@@ -15,7 +15,7 @@ urlpatterns = [
     path('update_list', views.update_list, name="update_list"),
     path('remove_list', views.remove_list, name="remove_list"),
     path('get_list_of_plans', views.get_list_of_plans, name="get_list_of_plans"),
-    path('get_plan', views.get_plan, name="get_plan")
-    
-    
+    path('get_plan', views.get_plan, name="get_plan"),
+    path('challenge', views.challenge, name="get_challenges")
+
 ]
