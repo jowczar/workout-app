@@ -7,4 +7,10 @@ class CreateWorkoutPlanScreenInitial extends CreateWorkoutPlanScreenState {}
 
 class LoadingState extends CreateWorkoutPlanScreenState {}
 
-class LoadedState extends CreateWorkoutPlanScreenState {}
+class LoadedState extends CreateWorkoutPlanScreenState {
+  final String id;
+
+  LoadedState({
+    required this.id 
+  });
+}

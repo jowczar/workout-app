@@ -17,11 +17,11 @@ import '../../../data/training_plan.dart';
 class CreateWorkoutPlanContent extends StatelessWidget {
   // const CreateWorkoutPlanContent({Key? key}) : super(key: key);
   CreateWorkoutPlanContent({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     // Tymczasowa lista elementów
     List<String> exercises = ['Deadlift', 'Squat'];
+    BlocProvider.of<CreateWorkoutPlanScreenBloc>(context).add(NewTrainingPlanEvent());
 
     return Container(
       height: double.infinity,
@@ -30,13 +30,14 @@ class CreateWorkoutPlanContent extends StatelessWidget {
       child: Stack(
         children: [
           LpBackground.getBackground(context),
-          _createMainData(context, exercises),
           BlocBuilder<CreateWorkoutPlanScreenBloc,
               CreateWorkoutPlanScreenState>(
-            buildWhen: (_, currState) => currState is LoadingState,
+            buildWhen: (_, currState) => currState is LoadingState || currState is LoadedState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
+              } else if (state is LoadedState){
+                return _createMainData(context, exercises);
               }
               return SizedBox();
             },

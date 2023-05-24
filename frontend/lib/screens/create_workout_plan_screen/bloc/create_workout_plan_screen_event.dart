@@ -4,3 +4,5 @@ part of 'create_workout_plan_screen_bloc.dart';
 abstract class CreateWorkoutPlanScreenEvent {}
 
 class SaveTrainingPlanEvent extends CreateWorkoutPlanScreenEvent {}
+
+class NewTrainingPlanEvent extends CreateWorkoutPlanScreenEvent{}

@@ -24,7 +24,7 @@ class ChallengesMainScreenBloc
   async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingState());
-
+    print('Challenge fetch data');
     var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/challenge');
 
     var response = await http.get(url, headers: {'UserUID': '${prefs.getString('user_id')}'});

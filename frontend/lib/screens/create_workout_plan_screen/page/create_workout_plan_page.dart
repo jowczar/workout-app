@@ -39,6 +39,7 @@ class CreateWorkoutPlanPage extends StatelessWidget {
         builder: (context, state) {
           return CreateWorkoutPlanContent();
         },
+        buildWhen: (_, currState) => currState is CreateWorkoutPlanScreenInitial,
         listenWhen: (_, currState) => currState is ErrorState,
         listener: (context, state) {},
       ),
