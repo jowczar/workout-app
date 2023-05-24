@@ -15,6 +15,7 @@ class ChallengesMainScreenBloc
   ChallengesMainScreenBloc() : super(ChallengesMainScreenInitial()) {
     on<ChallengesMainScreenEvent>((event, emit) {});
     on<ChallengesMainInitEvent>(_fetchChallenges);
+    on<DeleteChallengeEvent>(_deleteChallenge);
   }
 
   Future<void> _fetchChallenges(
@@ -30,5 +31,17 @@ class ChallengesMainScreenBloc
     List<Challenge> challenges = List<Challenge>.from(json.decode(response.body).map((x) => Challenge.fromJson(x)));
 
     emit(LoadedState(challenges));
+  }
+
+  Future<void> _deleteChallenge(
+    DeleteChallengeEvent event,
+    Emitter<ChallengesMainScreenState> emit) 
+  async {
+    print(event.id);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    emit(LoadingState());
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/challenge/${event.id}');
+    await http.delete(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
+    emit(DeletedState());
   }
 }

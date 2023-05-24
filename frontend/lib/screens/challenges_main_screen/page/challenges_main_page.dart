@@ -33,8 +33,17 @@ class ChallengesMainPage extends StatelessWidget {
         builder: (context, state) {
           return const ChallengesMainContent();
         },
-        listenWhen: (_, currState) => currState is LoadedState,
-        listener: (context, state) {},
+        listenWhen: (_, currState) => currState is LoadedState || currState is DeletedState,
+        listener: (context, state) async {
+          if(state is DeletedState){
+            await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => ChallengesMainPage(
+                      selectedIndex: 2,
+                    )));
+            });
+          }
+        },
       ),
     );
   }

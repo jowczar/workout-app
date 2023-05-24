@@ -30,8 +30,9 @@ class ChallengeSlidableButton extends StatelessWidget {
               bottomRight: Radius.circular(30),
             ),
             onPressed: ((context) {
+              print('${id} - delete');
               BlocProvider.of<ChallengesMainScreenBloc>(context)
-                  .add(ChallengesMainInitEvent());
+                  .add(DeleteChallengeEvent(id));
             }),
             icon: Icons.delete,
             foregroundColor: Color.fromARGB(255, 185, 100, 94),

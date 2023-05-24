@@ -13,6 +13,8 @@ class LoadedState extends ChallengesMainScreenState {
   LoadedState(this.data);
 }
 
+class DeletedState extends ChallengesMainScreenState{}
+
 class ErrorState extends ChallengesMainScreenState {
   final String message;
 
