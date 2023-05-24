@@ -221,7 +221,14 @@ def plan(request):
     result = ""
     user_UID = request.headers.get('UserUID')
     if request.method == 'GET':
-        result = database.child("Data").child(user_UID).child("plan").get().val()
+        res = database.child("Data").child(user_UID).child("plan").get().val()
+
+        result = []
+
+        for key, value in res.items():
+            item = {'id': key, 'name': value['name']}
+            result.append(item)
+
     elif request.method == 'POST':
         result = database.child("Data").child(user_UID).child("plan").push({
             'name': '',
