@@ -14,3 +14,6 @@ class LoadedState extends CreateWorkoutPlanScreenState {
     required this.id 
   });
 }
+
+class NextTabBarPageState extends CreateWorkoutPlanScreenState {}
+

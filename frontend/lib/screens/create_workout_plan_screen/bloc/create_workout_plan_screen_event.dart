@@ -6,3 +6,5 @@ abstract class CreateWorkoutPlanScreenEvent {}
 class SaveTrainingPlanEvent extends CreateWorkoutPlanScreenEvent {}
 
 class NewTrainingPlanEvent extends CreateWorkoutPlanScreenEvent{}
+
+class ChangeNameTrainingPlan extends CreateWorkoutPlanScreenEvent {}

@@ -17,7 +17,7 @@ class CreateWorkoutPlanScreenBloc
     on<CreateWorkoutPlanScreenEvent>((event, emit) {});
     on<SaveTrainingPlanEvent>(_saveTrainingPlan);
     on<NewTrainingPlanEvent>(_newTrainingPlan);
-
+    on<ChangeNameTrainingPlan>(_changePlanName);
   }
 
   Future<void> _saveTrainingPlan(SaveTrainingPlanEvent event,
@@ -35,6 +35,23 @@ class CreateWorkoutPlanScreenBloc
     var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var res = await http.post(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
+
+    await prefs.setString('new_plan', jsonDecode(res.body)['name']);
     emit(LoadedState(id: jsonDecode(res.body)['name']));
+  }
+
+  Future<void> _changePlanName(
+    ChangeNameTrainingPlan event,
+    Emitter<CreateWorkoutPlanScreenState> emit) 
+  async {
+    emit(LoadingState());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan_name/${prefs.getString('new_plan')}');
+    var res = await http.post(url, 
+      headers: {'UserUID': '${prefs.getString('user_id')}'},
+      body: {'name': nameController.text}
+    );
+
+    emit(NextTabBarPageState());
   }
 }

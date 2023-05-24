@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/add_cardio_screen/page/add_cardio_page.dart';
 import 'package:workout_app/screens/add_exercise_screen/page/add_exercise_page.dart';
@@ -140,7 +141,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
             CreateWorkoutPlanScreenState>(builder: (context, state) {
           return CustomButton(
             onTap: () {
-              bloc.add(SaveTrainingPlanEvent());
+              bloc.add(ChangeNameTrainingPlan());
             },
             text: TextConstant.save,
             width: 238.0,
