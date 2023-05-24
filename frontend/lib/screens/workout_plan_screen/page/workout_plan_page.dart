@@ -28,16 +28,15 @@ class WorkoutPlanPage extends StatelessWidget {
   final int exerciseId;
   final String exerciseName;
 
-  const WorkoutPlanPage({
-    required this.selectedIndex,
-    required this.exerciseId,
-    required this.exerciseName,
-    Key? key
-    }) : super(key: key);
+  const WorkoutPlanPage(
+      {required this.selectedIndex,
+      required this.exerciseId,
+      required this.exerciseName,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         body: _buildContext(context),
         bottomNavigationBar:

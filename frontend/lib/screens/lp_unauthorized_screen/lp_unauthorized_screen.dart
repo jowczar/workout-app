@@ -9,13 +9,13 @@ class LpUnauthorizedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        extendBody: true,
-        extendBodyBehindAppBar: true,
-        backgroundColor: ColorConstant.backgroundColor,
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: GestureDetector(
-                child: Stack(children: <Widget>[
+          extendBody: true,
+          extendBodyBehindAppBar: true,
+          backgroundColor: ColorConstant.backgroundColor,
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: GestureDetector(
+                  child: Stack(children: <Widget>[
                 LpBackground.getBackground(context),
                 Container(
                   width: double.maxFinite,
@@ -23,11 +23,9 @@ class LpUnauthorizedScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      
                       Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Image.asset(ImageConstant.imgLogo)
-                      ),
+                          padding: const EdgeInsets.all(30.0),
+                          child: Image.asset(ImageConstant.imgLogo)),
                       CustomButton(
                         onTap: () {
                           Navigator.pushNamed(context, AppRoutes.signInScreen);
@@ -47,10 +45,7 @@ class LpUnauthorizedScreen extends StatelessWidget {
                     ],
                   ),
                 )
-            ])
-          )
-        )
-      ),
+              ])))),
     );
   }
 }

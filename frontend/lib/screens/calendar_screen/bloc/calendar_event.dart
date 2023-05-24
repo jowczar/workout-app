@@ -9,8 +9,7 @@ class DayTappedEvent extends CalendarEvent {
   DayTappedEvent(this.day);
 }
 
-
-class PageChangedEvent extends CalendarEvent{
+class PageChangedEvent extends CalendarEvent {
   final DateTime focusedDay;
 
   PageChangedEvent(this.focusedDay);

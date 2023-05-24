@@ -12,7 +12,8 @@ class ForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(TextConstant.passwordReset, style: TextStyle(color: Colors.black, fontSize: 18)),
+          title: Text(TextConstant.passwordReset,
+              style: TextStyle(color: Colors.black, fontSize: 18)),
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
@@ -34,7 +35,9 @@ class ForgotPasswordPage extends StatelessWidget {
         builder: (context, state) {
           return ForgotPasswordContent();
         },
-        listenWhen: (_, currState) => currState is ForgotPasswordError || currState is ForgotPasswordSuccess,
+        listenWhen: (_, currState) =>
+            currState is ForgotPasswordError ||
+            currState is ForgotPasswordSuccess,
         listener: (context, state) {
           if (state is ForgotPasswordSuccess) {
             forgotPasswordSuccessfullySended(context);
@@ -50,7 +53,9 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 
   Future<void> forgotPasswordSuccessfullySended(BuildContext context) async {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(TextConstant.resetPasswordLinkWasSent), duration: Duration(seconds: 2)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(TextConstant.resetPasswordLinkWasSent),
+        duration: Duration(seconds: 2)));
     await Future.delayed(Duration(seconds: 2));
     Navigator.pop(context);
   }

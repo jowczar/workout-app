@@ -41,9 +41,7 @@ class SignUpContent extends StatelessWidget {
                 return _createLoading();
               } else if (state is ErrorState) {
                 return SizedBox();
-              } else if (state is NextTabBarPageState){
-                
-              }
+              } else if (state is NextTabBarPageState) {}
               return SizedBox();
             },
           ),
@@ -52,37 +50,32 @@ class SignUpContent extends StatelessWidget {
     );
   }
 
-  Widget _createMainData(BuildContext context ) {
+  Widget _createMainData(BuildContext context) {
     return SafeArea(
-      child: SizedBox (
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: -30,
-              child: AuthorizationBox(
-                child: Column(
-                  children: <Widget>[
-                    const SizedBox(height: 15),
-                    _createForm(context),
-                    const SizedBox(height: 20),
-                    _createSignInButton(context),
-                    OrField.getOrField(context),
-                    _createGoogleSignInButton(context),
-                  ],
-                ),
-              )
-            ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: BackArrow(),
-            ),
-          ]
-        )
-      )
-    );
+        child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Stack(children: <Widget>[
+              Positioned(
+                  top: -30,
+                  child: AuthorizationBox(
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(height: 15),
+                        _createForm(context),
+                        const SizedBox(height: 20),
+                        _createSignInButton(context),
+                        OrField.getOrField(context),
+                        _createGoogleSignInButton(context),
+                      ],
+                    ),
+                  )),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: BackArrow(),
+              ),
+            ])));
   }
 
   Widget _createLoading() {
@@ -145,7 +138,9 @@ class SignUpContent extends StatelessWidget {
               controller: bloc.confirmPasswordController,
               errorText: TextConstant.confirmPasswordPlaceholder,
               isError: state is ShowErrorState
-                  ? !ValidationService.confirmPassword(bloc.confirmPasswordController.text, bloc.passwordController.text)
+                  ? !ValidationService.confirmPassword(
+                      bloc.confirmPasswordController.text,
+                      bloc.passwordController.text)
                   : false,
               obscureText: true,
               onTextChanged: () {

@@ -7,7 +7,8 @@ import 'package:meta/meta.dart';
 part 'workout_main_screen_event.dart';
 part 'workout_main_screen_state.dart';
 
-class WorkoutMainScreenBloc extends Bloc<WorkoutMainScreenEvent, WorkoutMainScreenState> {
+class WorkoutMainScreenBloc
+    extends Bloc<WorkoutMainScreenEvent, WorkoutMainScreenState> {
   // StreamController<List<Map<String, dynamic>>> exercises = [];
   var exercises = List<Map<String, dynamic>>;
 
@@ -20,9 +21,7 @@ class WorkoutMainScreenBloc extends Bloc<WorkoutMainScreenEvent, WorkoutMainScre
   }
 
   Future<void> _fetchData(
-    WorkoutMainInitEvent event,
-    Emitter<WorkoutMainScreenState> emit
-  ) async {
+      WorkoutMainInitEvent event, Emitter<WorkoutMainScreenState> emit) async {
     print('Workout main screen fetchData');
 
     emit(LoadingState());
@@ -30,11 +29,8 @@ class WorkoutMainScreenBloc extends Bloc<WorkoutMainScreenEvent, WorkoutMainScre
     await Future.delayed(const Duration(seconds: 2));
 
     List<Map<String, dynamic>> newList = [];
-    for(var i = 0; i <= Random().nextInt(3) + 2; i++){
-      newList.add({
-        'id': i + 1,
-        'name': 'Plan treningowy ${i + 1}'
-      });
+    for (var i = 0; i <= Random().nextInt(3) + 2; i++) {
+      newList.add({'id': i + 1, 'name': 'Plan treningowy ${i + 1}'});
     }
 
     emit(LoadedState(newList));

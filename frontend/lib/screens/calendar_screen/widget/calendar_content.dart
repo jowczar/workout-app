@@ -34,13 +34,15 @@ class _CalendarContent extends State<CalendarContent> {
           _createMainData(context),
           BlocBuilder<CalendarBloc, CalendarState>(
             buildWhen: (_, currState) =>
-                currState is LoadingState || currState is ErrorState || currState is LoadedState,
+                currState is LoadingState ||
+                currState is ErrorState ||
+                currState is LoadedState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
               } else if (state is ErrorState) {
                 return SizedBox();
-              } else if(state is LoadedState){
+              } else if (state is LoadedState) {
                 return SizedBox();
               }
               return SizedBox();
@@ -52,9 +54,10 @@ class _CalendarContent extends State<CalendarContent> {
   }
 
   Widget _createMainData(BuildContext context) {
-    BlocProvider.of<CalendarBloc>(context).add(PageChangedEvent(DateTime.now()));
+    BlocProvider.of<CalendarBloc>(context)
+        .add(PageChangedEvent(DateTime.now()));
     return SafeArea(
-      child: SizedBox(
+        child: SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: TableCalendar(
@@ -89,13 +92,14 @@ class _CalendarContent extends State<CalendarContent> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context).daysMap[DateFormatter.ddMMyyyy(day)];
+    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context)
+        .daysMap[DateFormatter.ddMMyyyy(day)];
     print(calendarDay);
     // BlocProvider.of<CalendarBloc>(context).add(DayTappedEvent(day));
     // BlocProvider.of<CalendarBloc>(context).add(FetchCalendarDataEvent());
   }
 
-  void _onPageChanged(DateTime focusedDay){
+  void _onPageChanged(DateTime focusedDay) {
     BlocProvider.of<CalendarBloc>(context).add(PageChangedEvent(focusedDay));
   }
 
@@ -103,17 +107,22 @@ class _CalendarContent extends State<CalendarContent> {
     String img = ImageConstant.lpBackground;
     Color color = ColorConstant.secondaryColor;
 
-    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context).daysMap[DateFormatter.ddMMyyyy(day)];
+    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context)
+        .daysMap[DateFormatter.ddMMyyyy(day)];
 
-    if(calendarDay == null){
-       return const SizedBox(
-          width: 45,
-          height: 45,
-        );
-    }  
-    
-    img = calendarDay.isWorkout! ? ImageConstant.imgDumbbell : ImageConstant.imgSleep;
-    color = calendarDay.isDone! ? ColorConstant.secondaryColor : ColorConstant.white;
+    if (calendarDay == null) {
+      return const SizedBox(
+        width: 45,
+        height: 45,
+      );
+    }
+
+    img = calendarDay.isWorkout!
+        ? ImageConstant.imgDumbbell
+        : ImageConstant.imgSleep;
+    color = calendarDay.isDone!
+        ? ColorConstant.secondaryColor
+        : ColorConstant.white;
 
     return SvgPicture.asset(
       img,
@@ -142,7 +151,8 @@ class _CalendarContent extends State<CalendarContent> {
       height: 150,
       child: Column(
         children: <Widget>[
-          Text(day.day.toString(), style: const TextStyle(color: Colors.white, fontSize: 24)),
+          Text(day.day.toString(),
+              style: const TextStyle(color: Colors.white, fontSize: 24)),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: _getDayIcon(day),
