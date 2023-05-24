@@ -6,7 +6,7 @@ import 'package:workout_app/core/app_export.dart';
 import '../challenges_main_screen/bloc/challenges_main_screen_bloc.dart';
 
 class ChallengeSlidableButton extends StatelessWidget {
-  final int id;
+  final String id;
   final String exerciseName;
   final int points;
 

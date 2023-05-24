@@ -39,8 +39,10 @@ class SignUpContent extends StatelessWidget {
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is ErrorState || state is NextTabBarPageState) {
+              } else if (state is ErrorState) {
                 return SizedBox();
+              } else if (state is NextTabBarPageState){
+                
               }
               return SizedBox();
             },

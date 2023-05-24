@@ -1,5 +1,7 @@
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:workout_app/core/service/validation_service.dart';
+import 'package:workout_app/screens/challenges_main_screen/page/challenges_main_page.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
 import 'package:workout_app/screens/common_widgets/lp_background.dart';
 import 'package:workout_app/screens/common_widgets/or_field.dart';
@@ -37,7 +39,7 @@ class SignInPage extends StatelessWidget {
             currState is NextSignUpPageState ||
             currState is NextTabBarPageState ||
             currState is ErrorState,
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is NextForgotPasswordPageState) {
             print("next forgot password page");
             Navigator.of(context)
@@ -47,7 +49,9 @@ class SignInPage extends StatelessWidget {
             // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SignUpPage()));
           } else if (state is NextTabBarPageState) {
             print("next tab bar page");
-            // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => TabBarPage()));
+            await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ChallengesMainPage(selectedIndex: 2,)));
+            });
           } else if (state is ErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),

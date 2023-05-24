@@ -38,7 +38,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       if (_checkValidatorsOfTextField()) {
         try {
           emit(LoadingState());
-          await AuthService.signIn(emailController.text, passwordController.text);
+          await AuthService.signUp(emailController.text, passwordController.text);
           emit(NextTabBarPageState());
           print("Go to the next page");
         } catch (e) {
