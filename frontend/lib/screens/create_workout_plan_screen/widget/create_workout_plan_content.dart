@@ -85,11 +85,11 @@ class CreateWorkoutPlanContent extends StatelessWidget {
                       children: <Widget>[
                         if (exercises.isNotEmpty) _createForm(context),
                         const SizedBox(height: 60),
-                        for (String exercise in exercises)
-                          SlidableButton(
-                            exerciseName: exercise,
-                          ),
-                        const SizedBox(height: 70),
+                        // for (String exercise in exercises)
+                        //   SlidableButton(
+                        //     exerciseName: exercise,
+                        //   ),
+                        // const SizedBox(height: 70),
                         CustomButton(
                             onTap: () {
                               Navigator.push(

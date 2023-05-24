@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/add_cardio_screen/page/add_cardio_page.dart';
 // import 'package:workout_app/screens/add_exercise_screen/bloc/add_exercise_screen_bloc.dart';
@@ -108,7 +109,10 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
         child: BlocBuilder<WorkoutMainScreenBloc, WorkoutMainScreenState>(
             builder: (context, state) {
           return CustomButton(
-            onTap: () {
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('new_plan', '');
+
               Navigator.push(
                 context,
                 MaterialPageRoute(

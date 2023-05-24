@@ -31,9 +31,16 @@ class CreateWorkoutPlanScreenBloc
     NewTrainingPlanEvent event,
     Emitter<CreateWorkoutPlanScreenState> emit) 
   async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if(prefs.getString('new_plan') != ''){
+      print(prefs.getString('new_plan'));
+      emit(LoadedState(id: prefs.getString('new_plan')!));
+      return;
+    }
+
     emit(LoadingState());
     var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     var res = await http.post(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
 
     await prefs.setString('new_plan', jsonDecode(res.body)['name']);
@@ -52,6 +59,7 @@ class CreateWorkoutPlanScreenBloc
       body: {'name': nameController.text}
     );
 
+    await prefs.setString('new_plan', '');
     emit(NextTabBarPageState());
   }
 }
