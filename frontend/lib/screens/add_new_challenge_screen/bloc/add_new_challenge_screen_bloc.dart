@@ -25,7 +25,7 @@ class AddNewChallengeScreenBloc extends Bloc<AddNewChallengeScreenEvent, AddNewC
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingState());
 
-    var url = Uri.parse('${dotenv.env['API_ROOT']}/challenge');
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/challenge');
     await http.post(url, 
       headers: {'UserUID': '${prefs.getString('user_id')}', 'X-CSRFToken': '34inrzBarciU428wJ7FjqhfKc0g0yTTt'},
       body: {'name': nameController.text, 'points': pointsController.text});

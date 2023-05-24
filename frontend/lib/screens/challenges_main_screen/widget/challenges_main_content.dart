@@ -52,8 +52,6 @@ class ChallengesMainContent extends StatelessWidget {
   }
 
   Widget _createMainData(BuildContext context, List<Challenge> challenges) {
-    print(challenges[0].name);
-
     int points = 0;
     for(var i = 0; i < challenges.length; i++){
       points += int.parse(challenges[i].points!);
