@@ -15,14 +15,13 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildContext(context),
-      bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 1),
-      extendBody: true,
-      appBar: PreferredSize(
-          child: CustomAppBar(), preferredSize: Size.fromHeight(150)),
-      endDrawer: CustomDrawer(),
-      resizeToAvoidBottomInset: false
-    );
+        body: _buildContext(context),
+        bottomNavigationBar: CustomBottomNavigationBar(selectedIndex: 1),
+        extendBody: true,
+        appBar: PreferredSize(
+            child: CustomAppBar(), preferredSize: Size.fromHeight(150)),
+        endDrawer: CustomDrawer(),
+        resizeToAvoidBottomInset: false);
   }
 
   BlocProvider<CalendarBloc> _buildContext(BuildContext context) {

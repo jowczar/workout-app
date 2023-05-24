@@ -3,6 +3,7 @@ import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/core/utils/color_constant.dart';
 import 'package:workout_app/core/utils/text_constant.dart';
 import 'package:workout_app/core/service/validation_service.dart';
+import 'package:workout_app/screens/challenges_main_screen/page/challenges_main_page.dart';
 import 'package:workout_app/screens/common_widgets/authorization_box.dart';
 import 'package:workout_app/screens/common_widgets/back_arrow.dart';
 import 'package:workout_app/screens/common_widgets/loader.dart';
@@ -37,7 +38,7 @@ class SignInContent extends StatelessWidget {
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is ErrorState || state is NextTabBarPageState) {
+              } else if (state is ErrorState) {
                 return SizedBox();
               }
               return SizedBox();
@@ -48,15 +49,14 @@ class SignInContent extends StatelessWidget {
     );
   }
 
-  Widget _createMainData(BuildContext context ) {
+  Widget _createMainData(BuildContext context) {
     return SafeArea(
-      child: SizedBox (
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              child: AuthorizationBox(
+        child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Stack(children: <Widget>[
+              Positioned(
+                  child: AuthorizationBox(
                 child: Column(
                   children: <Widget>[
                     const SizedBox(height: 30),
@@ -69,17 +69,13 @@ class SignInContent extends StatelessWidget {
                     _createGoogleSignInButton(context),
                   ],
                 ),
-              )
-            ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: BackArrow(),
-            ),
-          ]
-        )
-      )
-    );
+              )),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: BackArrow(),
+              ),
+            ])));
   }
 
   Widget _createLoading() {
@@ -133,9 +129,7 @@ class SignInContent extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       child: Padding(
-        padding: EdgeInsets.only(
-          left: width - 300
-        ),
+        padding: EdgeInsets.only(left: width - 300),
         child: Text(
           TextConstant.forgotPassword,
           style: TextStyle(

@@ -14,14 +14,14 @@ import 'package:workout_app/screens/common_widgets/custom_button.dart';
 class ChallengesMainContent extends StatelessWidget {
   // final int points;
 
-  const ChallengesMainContent({Key? key})
-      : super(key: key);
+  const ChallengesMainContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Tymczasowa lista elementów
     // List<String> exercises = ['Deadlift: 200kg', 'Squat: 160kg'];
-    BlocProvider.of<ChallengesMainScreenBloc>(context).add(ChallengesMainInitEvent());
+    BlocProvider.of<ChallengesMainScreenBloc>(context)
+        .add(ChallengesMainInitEvent());
 
     return Container(
       height: double.infinity,
@@ -38,7 +38,7 @@ class ChallengesMainContent extends StatelessWidget {
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if (state is LoadedState){
+              } else if (state is LoadedState) {
                 return _createMainData(context, state.data);
               } else if (state is ErrorState) {
                 return SizedBox();
@@ -53,9 +53,12 @@ class ChallengesMainContent extends StatelessWidget {
 
   Widget _createMainData(BuildContext context, List<Challenge> challenges) {
     print(challenges[0].name);
-    int points = challenges.reduce((value, element) {
-      return Challenge(name: value.name, points: value.points + element.points);
-    }).points;
+
+    int points = 0;
+    for(var i = 0; i < challenges.length; i++){
+      points += int.parse(challenges[i].points!);
+    }
+
 
     return SafeArea(
       child: SizedBox(
@@ -94,9 +97,9 @@ class ChallengesMainContent extends StatelessWidget {
                         const SizedBox(height: 60),
                         for (int i = 0; i < challenges.length; i++) ...[
                           ChallengeSlidableButton(
-                            id: challenges[i].id,
-                            exerciseName: challenges[i].name,
-                            points: challenges[i].points,
+                            id: challenges[i].id!,
+                            exerciseName: challenges[i].name!,
+                            points: int.parse(challenges[i].points!),
                           ),
                           if (i < challenges.length - 1)
                             SizedBox(

@@ -20,8 +20,8 @@ class Button extends StatelessWidget {
           onTap: () {},
           child: Container(
             padding: EdgeInsets.all(0.0),
-            height: 60.0,//MediaQuery.of(context).size.width * .08,
-            width: 220.0,//MediaQuery.of(context).size.width * .3,
+            height: 60.0, //MediaQuery.of(context).size.width * .08,
+            width: 220.0, //MediaQuery.of(context).size.width * .3,
             decoration: BoxDecoration(
               borderRadius: borderRadius,
             ),

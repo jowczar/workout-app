@@ -16,10 +16,7 @@ import '../../../data/training_plan.dart';
 
 class CreateWorkoutPlanContent extends StatelessWidget {
   // const CreateWorkoutPlanContent({Key? key}) : super(key: key);
-  CreateWorkoutPlanContent({
-    Key? key
-    }): super(key: key);
-
+  CreateWorkoutPlanContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +33,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
           _createMainData(context, exercises),
           BlocBuilder<CreateWorkoutPlanScreenBloc,
               CreateWorkoutPlanScreenState>(
-            buildWhen: (_, currState) =>
-                currState is LoadingState,
+            buildWhen: (_, currState) => currState is LoadingState,
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
@@ -161,9 +157,7 @@ class CreateWorkoutPlanContent extends StatelessWidget {
       controller: bloc.nameController,
       errorText: "",
       isError: false,
-      onTextChanged: () {
-
-      },
+      onTextChanged: () {},
     );
   }
 
@@ -171,7 +165,6 @@ class CreateWorkoutPlanContent extends StatelessWidget {
     return Loader();
   }
 }
-
 
 /*
 BIGOS - składniki:

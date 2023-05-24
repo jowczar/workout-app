@@ -20,7 +20,7 @@ import 'package:workout_app/screens/common_widgets/workout_plan_slidable_button.
 import '../../../data/training_plan.dart';
 import '../bloc/workout_main_screen_bloc.dart';
 
-class WorkoutMainContent extends StatefulWidget  {
+class WorkoutMainContent extends StatefulWidget {
   const WorkoutMainContent({Key? key}) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class WorkoutMainContent extends StatefulWidget  {
 }
 
 class _WorkoutMainContent extends State<WorkoutMainContent> {
-@override
+  @override
   Widget build(BuildContext context) {
     // Tymczasowa lista elementów
     // List<Map<String, dynamic>> exercises = [];
@@ -49,7 +49,7 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
             builder: (context, state) {
               if (state is LoadingState) {
                 return _createLoading();
-              } else if(state is LoadedState){
+              } else if (state is LoadedState) {
                 return _createMainData(context, state.data);
               }
               return SizedBox();
@@ -60,7 +60,8 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
     );
   }
 
-  Widget _createMainData(BuildContext context, List<Map<String, dynamic>> exercises) {
+  Widget _createMainData(
+      BuildContext context, List<Map<String, dynamic>> exercises) {
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -125,6 +126,4 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
   Widget _createLoading() {
     return Loader();
   }
-
 }
-  

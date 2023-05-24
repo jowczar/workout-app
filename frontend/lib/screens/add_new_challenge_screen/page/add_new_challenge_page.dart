@@ -8,6 +8,8 @@ import 'package:workout_app/screens/common_widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../challenges_main_screen/page/challenges_main_page.dart';
+
 class AddNewChallengePage extends StatelessWidget {
   final int selectedIndex;
   const AddNewChallengePage({Key? key, required this.selectedIndex})
@@ -34,8 +36,17 @@ class AddNewChallengePage extends StatelessWidget {
         builder: (context, state) {
           return const AddNewChallengeContent();
         },
-        listenWhen: (_, currState) => currState is ErrorState,
-        listener: (context, state) {},
+        listenWhen: (_, currState) => currState is ErrorState || currState is NextTabBarPageState,
+        listener: (context, state) async {
+          if(state is NextTabBarPageState){
+            await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => ChallengesMainPage(
+                      selectedIndex: 2,
+                    )));
+            });
+          }
+        },
       ),
     );
   }

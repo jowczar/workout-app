@@ -8,7 +8,8 @@ class CustomButton extends StatelessWidget {
   final bool isEnabled;
   final Function() onTap;
 
-  CustomButton({required this.title, this.isEnabled = true, required this.onTap});
+  CustomButton(
+      {required this.title, this.isEnabled = true, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,9 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 55,
       decoration: BoxDecoration(
-        color: isEnabled ? ColorConstant.primaryColor : ColorConstant.disabledColor,
+        color: isEnabled
+            ? ColorConstant.primaryColor
+            : ColorConstant.disabledColor,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Material(

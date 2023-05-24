@@ -27,14 +27,9 @@ class Challenge {
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [Challenge].
-  factory Challenge.fromJson(Map<String, dynamic> json) {
-    return Challenge(
-      id: json['id'],
-      name: json['name'],
-      points: json['points'],
-    );
+  factory Challenge.fromJson(String data) {
+    return Challenge.fromMap(json.decode(data) as Map<String, dynamic>);
   }
-  
 
   /// `dart:convert`
   ///

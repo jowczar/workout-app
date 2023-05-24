@@ -29,7 +29,10 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
         children: [
           _createMainData(context),
           BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
-            buildWhen: (_, currState) => currState is ForgotPasswordLoading || currState is ForgotPasswordError || currState is ForgotPasswordSuccess,
+            buildWhen: (_, currState) =>
+                currState is ForgotPasswordLoading ||
+                currState is ForgotPasswordError ||
+                currState is ForgotPasswordSuccess,
             builder: (context, state) {
               if (state is ForgotPasswordLoading) {
                 return _createLoading();
@@ -55,7 +58,10 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     return SafeArea(
       child: SingleChildScrollView(
         child: SizedBox(
-          height: height - 30 - MediaQuery.of(context).padding.bottom - kToolbarHeight,
+          height: height -
+              30 -
+              MediaQuery.of(context).padding.bottom -
+              kToolbarHeight,
           child: Column(
             children: [
               Spacer(flex: 2),
@@ -104,7 +110,8 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
               FocusScope.of(context).unfocus();
               if (_isButtonEnabled) {
                 setState(() {
-                  _isTextFieldError = !ValidationService.email(bloc.emailController.text);
+                  _isTextFieldError =
+                      !ValidationService.email(bloc.emailController.text);
                 });
                 if (!_isTextFieldError) {
                   bloc.add(ForgotPasswordTappedEvent());

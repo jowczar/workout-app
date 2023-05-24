@@ -4,14 +4,12 @@ import 'package:workout_app/core/app_export.dart';
 import 'custom_button.dart';
 
 class GoogleButton extends StatelessWidget {
-  GoogleButton(
-    {
-      this.type,
-      this.width,
-      this.height,
-      this.disabled = false,
-    }
-  );
+  GoogleButton({
+    this.type,
+    this.width,
+    this.height,
+    this.disabled = false,
+  });
 
   GoogleButtonType? type;
 
@@ -51,7 +49,7 @@ class GoogleButton extends StatelessWidget {
         return null;
     }
   }
-  
+
   _buildText() {
     switch (type) {
       case GoogleButtonType.GOOGLE_SIGN_IN:
@@ -65,11 +63,9 @@ class GoogleButton extends StatelessWidget {
 
   _buildPrefixWidget() {
     return Container(
-      margin: getMargin(right: 12),
-      child: CustomImageView(svgPath: ImageConstant.imgGoogle)
-    );
+        margin: getMargin(right: 12),
+        child: CustomImageView(svgPath: ImageConstant.imgGoogle));
   }
-
 }
 
 enum GoogleButtonType {

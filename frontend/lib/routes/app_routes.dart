@@ -34,10 +34,12 @@ class AppRoutes {
     forgotPasswordScreen: (context) => ForgotPasswordPage(),
     addCardioScreen: (context) => AddCardioPage(selectedIndex: 2),
     addExerciseScreen: (context) => AddExercisePage(selectedIndex: 2),
-    createWorkoutPlanScreen: (context) => CreateWorkoutPlanPage(selectedIndex: 2),
+    createWorkoutPlanScreen: (context) =>
+        CreateWorkoutPlanPage(selectedIndex: 2),
     challengesScreen: (context) => ChallengesMainPage(selectedIndex: 3),
     addNewChallengeScreen: (context) => AddNewChallengePage(selectedIndex: 3),
     workoutMainScreen: (context) => WorkoutMainPage(selectedIndex: 2),
-    workoutPlanScreen: (context) => WorkoutPlanPage(selectedIndex: 1, exerciseId: 2, exerciseName: "3")
+    workoutPlanScreen: (context) =>
+        WorkoutPlanPage(selectedIndex: 1, exerciseId: 2, exerciseName: "3")
   };
 }

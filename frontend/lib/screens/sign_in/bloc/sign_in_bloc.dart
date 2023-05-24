@@ -17,44 +17,43 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInInitial()) {
     on<OnTextChangeEvent>(onTextChange);
     on<SignInTappedEvent>(onSignInTapped);
-    on<ForgotPasswordTappedEvent>((event, emit) => emit(NextForgotPasswordPageState()));
+    on<ForgotPasswordTappedEvent>(
+        (event, emit) => emit(NextForgotPasswordPageState()));
     on<SignUpTappedEvent>((event, emit) => emit(NextSignUpPageState()));
   }
 
   Future<void> onTextChange(
-    OnTextChangeEvent event,
-    Emitter<SignInState> emit
-  ) async {
-      if (isButtonEnabled != _checkIfSignInButtonEnabled()) {
-        isButtonEnabled = _checkIfSignInButtonEnabled();
-        emit(SignInButtonEnableChangedState(isEnabled: isButtonEnabled));
-      }
+      OnTextChangeEvent event, Emitter<SignInState> emit) async {
+    if (isButtonEnabled != _checkIfSignInButtonEnabled()) {
+      isButtonEnabled = _checkIfSignInButtonEnabled();
+      emit(SignInButtonEnableChangedState(isEnabled: isButtonEnabled));
+    }
   }
 
   Future<void> onSignInTapped(
-    SignInTappedEvent event, 
-    Emitter<SignInState> emit
-  ) async {
-      if (_checkValidatorsOfTextField()) {
-        try {
-          emit(LoadingState());
-          await AuthService.signIn(emailController.text, passwordController.text);
-          emit(NextTabBarPageState());
-          print("Go to the next page");
-        } catch (e) {
-          print('E to tstrng: ' + e.toString());
-          emit(ErrorState(message: e.toString()));
-        }
-      } else {
-        emit(ShowErrorState());
+      SignInTappedEvent event, Emitter<SignInState> emit) async {
+    if (_checkValidatorsOfTextField()) {
+      try {
+        emit(LoadingState());
+        await AuthService.signIn(emailController.text, passwordController.text);
+        emit(NextTabBarPageState());
+        print("Go to the next page");
+      } catch (e) {
+        print('E to tstrng: ' + e.toString());
+        emit(ErrorState(message: e.toString()));
       }
+    } else {
+      emit(ShowErrorState());
+    }
   }
-  
+
   bool _checkIfSignInButtonEnabled() {
-    return emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    return emailController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty;
   }
 
   bool _checkValidatorsOfTextField() {
-    return ValidationService.email(emailController.text) && ValidationService.password(passwordController.text);
+    return ValidationService.email(emailController.text) &&
+        ValidationService.password(passwordController.text);
   }
 }

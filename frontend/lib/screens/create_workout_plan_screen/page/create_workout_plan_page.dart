@@ -14,10 +14,8 @@ import '../../../data/training_plan.dart';
 class CreateWorkoutPlanPage extends StatelessWidget {
   final int selectedIndex;
 
-  CreateWorkoutPlanPage({
-    required this.selectedIndex,
-    Key? key
-    }): super(key: key);
+  CreateWorkoutPlanPage({required this.selectedIndex, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

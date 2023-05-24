@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 part 'create_workout_plan_screen_event.dart';
 part 'create_workout_plan_screen_state.dart';
 
-class CreateWorkoutPlanScreenBloc extends Bloc<CreateWorkoutPlanScreenEvent, CreateWorkoutPlanScreenState> {
-
+class CreateWorkoutPlanScreenBloc
+    extends Bloc<CreateWorkoutPlanScreenEvent, CreateWorkoutPlanScreenState> {
   final nameController = TextEditingController();
 
   CreateWorkoutPlanScreenBloc() : super(CreateWorkoutPlanScreenInitial()) {
@@ -14,13 +14,10 @@ class CreateWorkoutPlanScreenBloc extends Bloc<CreateWorkoutPlanScreenEvent, Cre
     on<SaveTrainingPlanEvent>(_saveTrainingPlan);
   }
 
-  Future<void> _saveTrainingPlan(
-    SaveTrainingPlanEvent event,
-    Emitter<CreateWorkoutPlanScreenState> emit
-  ) async {
+  Future<void> _saveTrainingPlan(SaveTrainingPlanEvent event,
+      Emitter<CreateWorkoutPlanScreenState> emit) async {
     print(nameController.text);
     emit(LoadingState());
     await Future.delayed(const Duration(seconds: 2));
-
   }
 }
