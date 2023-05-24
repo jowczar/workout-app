@@ -25,7 +25,7 @@ class ChallengesMainScreenBloc
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingState());
 
-    var url = Uri.parse('${dotenv.env['API_ROOT']}/challenge');
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/challenge');
 
     var response = await http.get(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
     List<Challenge> challenges = List<Challenge>.from(json.decode(response.body).map((x) => Challenge.fromJson(x)));
@@ -40,7 +40,7 @@ class ChallengesMainScreenBloc
     print(event.id);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     emit(LoadingState());
-    var url = Uri.parse('${dotenv.env['API_ROOT']}/challenge/${event.id}');
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/challenge/${event.id}');
     await http.delete(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
     emit(DeletedState());
   }
