@@ -16,6 +16,7 @@ urlpatterns = [
     path('remove_list', views.remove_list, name="remove_list"),
     path('get_list_of_plans', views.get_list_of_plans, name="get_list_of_plans"),
     path('get_plan', views.get_plan, name="get_plan"),
-    path('challenge', views.challenge, name="get_challenges"),
-    path('challenge/<id>', views.delete_challenge, name="delete_challenges")
+
+    path('v2/challenge', views.challenge, name="get_challenges"),
+    path('v2/challenge/<id>', views.delete_challenge, name="delete_challenges")
 ]
