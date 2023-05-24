@@ -177,7 +177,6 @@ def get_plan(request):
 
 def challenge(request):
     user_UID = request.headers.get('UserUID')
-
     if request.method == 'GET':
         try:
             challenges = database.child("Data").child(user_UID).child("challenge").get()
@@ -199,9 +198,15 @@ def challenge(request):
                 'points': request.POST.get('points')
             }
         )
-
-
     else:
         result = "Error, no parameter passed"
 
+    return JsonResponse(result, safe=False)
+
+
+def delete_challenge(request, id):
+    user_UID = request.headers.get('UserUID')
+    print(id)
+    if request.method == 'DELETE':
+        result = database.child("Data").child(user_UID).child("challenge").child(id).set(None)
     return JsonResponse(result, safe=False)
