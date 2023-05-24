@@ -14,10 +14,10 @@ class ChallengesMainScreenBloc
     extends Bloc<ChallengesMainScreenEvent, ChallengesMainScreenState> {
   ChallengesMainScreenBloc() : super(ChallengesMainScreenInitial()) {
     on<ChallengesMainScreenEvent>((event, emit) {});
-    on<ChallengesMainInitEvent>(_fetchData);
+    on<ChallengesMainInitEvent>(_fetchChallenges);
   }
 
-  Future<void> _fetchData(
+  Future<void> _fetchChallenges(
     ChallengesMainInitEvent event,
     Emitter<ChallengesMainScreenState> emit) 
   async {
