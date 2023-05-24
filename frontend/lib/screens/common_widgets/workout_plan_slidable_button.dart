@@ -6,7 +6,7 @@ import 'package:workout_app/screens/workout_plan_screen/page/workout_plan_page.d
 
 class WorkoutPlanSlidableButton extends StatelessWidget {
   final String exerciseName;
-  final int exerciseId;
+  final String exerciseId;
 
   const WorkoutPlanSlidableButton(
       {required this.exerciseName, required this.exerciseId, Key? key})

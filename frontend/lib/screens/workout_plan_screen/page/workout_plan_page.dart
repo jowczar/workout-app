@@ -25,7 +25,7 @@ import '../widget/workout_plan_content.dart';
 
 class WorkoutPlanPage extends StatelessWidget {
   final int selectedIndex;
-  final int exerciseId;
+  final String exerciseId;
   final String exerciseName;
 
   const WorkoutPlanPage(

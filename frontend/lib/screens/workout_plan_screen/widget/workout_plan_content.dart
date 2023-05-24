@@ -20,7 +20,7 @@ import 'package:workout_app/screens/workout_plan_screen/bloc/workout_plan_screen
 //
 
 class WorkoutPlanContent extends StatelessWidget {
-  int exerciseId;
+  String exerciseId;
   String exerciseName;
 
   WorkoutPlanContent({
