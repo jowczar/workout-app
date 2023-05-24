@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
@@ -6,6 +8,7 @@ from rest_framework.decorators import api_view, permission_classes
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
+from django.http import QueryDict
 import pyrebase
 from backendcore.help.test_list import *
 config={
@@ -174,7 +177,9 @@ def get_plan(request):
 
     return JsonResponse(result, safe=False)
 
-
+################
+#     v2       #
+################
 def challenge(request):
     user_UID = request.headers.get('UserUID')
     if request.method == 'GET':
@@ -206,7 +211,62 @@ def challenge(request):
 
 def delete_challenge(request, id):
     user_UID = request.headers.get('UserUID')
-    print(id)
+    result = ''
     if request.method == 'DELETE':
         result = database.child("Data").child(user_UID).child("challenge").child(id).set(None)
+    return JsonResponse(result, safe=False)
+
+
+def plan(request):
+    result = ""
+    user_UID = request.headers.get('UserUID')
+    if request.method == 'GET':
+        result = database.child("Data").child(user_UID).child("plan").get().val()
+    elif request.method == 'POST':
+        result = database.child("Data").child(user_UID).child("plan").push({
+            'name': '',
+            'exercise': []
+        })
+    elif request.method == 'PUT':
+        result = ''
+
+    return JsonResponse(result, safe=False)
+
+def addExerciseToPlan(request, plan_id):
+    result = ''
+    user_UID = request.headers.get('UserUID')
+    if request.method == 'POST':
+        result = database.child("Data").child(user_UID).child("plan").child(plan_id).child('exercise').push({
+            'name': 'Wyciskanie1',
+            'sets': [
+                {
+                    'weight': 150,
+                    'reps': 5,
+                    'isChecked': False,
+                    'isNegative': False
+                },
+                {
+                    'weight': 150,
+                    'reps': 5,
+                    'isChecked': False,
+                    'isNegative': False
+                },
+                {
+                    'weight': 150,
+                    'reps': 5,
+                    'isChecked': False,
+                    'isNegative': False
+                }
+            ]
+        })
+
+    return JsonResponse(result, safe=False)
+
+def changePlanName(request, plan_id):
+    user_UID = request.headers.get('UserUID')
+
+    if request.method == 'POST':
+        newName = request.POST.get('name')
+        result = database.child("Data").child(user_UID).child("plan").child(plan_id).child('name').set(newName)
+
     return JsonResponse(result, safe=False)
