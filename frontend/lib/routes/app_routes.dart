@@ -40,6 +40,6 @@ class AppRoutes {
     addNewChallengeScreen: (context) => AddNewChallengePage(selectedIndex: 3),
     workoutMainScreen: (context) => WorkoutMainPage(selectedIndex: 2),
     workoutPlanScreen: (context) =>
-        WorkoutPlanPage(selectedIndex: 1, exerciseId: 2, exerciseName: "3")
+        WorkoutPlanPage(selectedIndex: 1, exerciseId: '2', exerciseName: "3")
   };
 }

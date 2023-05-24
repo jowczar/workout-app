@@ -7,9 +7,15 @@ class WorkoutMainScreenInitial extends WorkoutMainScreenState {}
 
 class LoadingState extends WorkoutMainScreenState {}
 
-class LoadedState extends WorkoutMainScreenState {
-  final List<Map<String, dynamic>> data;
+// class LoadedState extends WorkoutMainScreenState {
+//   final List<Map<String, dynamic>> data;
 
+//   LoadedState(this.data);
+// }
+
+class LoadedState extends WorkoutMainScreenState {
+  final List<TrainingPlan> data;
+  
   LoadedState(this.data);
 }
 

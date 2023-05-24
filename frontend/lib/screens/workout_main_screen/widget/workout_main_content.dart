@@ -61,7 +61,7 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
   }
 
   Widget _createMainData(
-      BuildContext context, List<Map<String, dynamic>> exercises) {
+      BuildContext context, List<TrainingPlan> plans) {
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -77,13 +77,13 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     const SizedBox(height: 60),
-                    for (Map<String, dynamic> exercise in exercises)
+                    for (TrainingPlan item in plans)
                       WorkoutPlanSlidableButton(
-                        exerciseName: exercise['name'],
-                        exerciseId: exercise['id'],
+                        exerciseName: item.name,
+                        exerciseId: item.id,
                       ),
                     const SizedBox(height: 70),
-                    if (exercises.isNotEmpty)
+                    // if (exercises.isNotEmpty)
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
