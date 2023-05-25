@@ -145,7 +145,7 @@ class AddExerciseContent extends StatelessWidget {
               title: "",
               textInputAction: TextInputAction.next,
               placeholder: TextConstant.exerciseName,
-              controller: TextEditingController(),
+              controller: bloc.nameController,
               errorText: "",
               isError: false,
               onTextChanged: () {},
