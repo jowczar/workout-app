@@ -36,6 +36,7 @@ class AddExerciseScreenBloc extends Bloc<AddExerciseScreenEvent, AddExerciseScre
       // Obsłuż zdarzenie kliknięcia przycisku Cancel
 
       // nie ma problemu
+      emit(NextTabBarPageState());
     });
 
     on<SaveButtonTappedEvent>((event, emit) async {
@@ -66,6 +67,8 @@ class AddExerciseScreenBloc extends Bloc<AddExerciseScreenEvent, AddExerciseScre
           'sets': json.encode(setsList)
         }
       );
+
+      emit(NextTabBarPageState());
     });
 
     on<CopyLastSetTappedEvent>((event, emit) {
