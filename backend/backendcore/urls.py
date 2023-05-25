@@ -23,5 +23,6 @@ urlpatterns = [
     path('v2/plan', views.plan, name="plan"),
     path('v2/plan/<plan_id>', views.addExerciseToPlan, name="plan"),
     path('v2/plan_name/<plan_id>', views.changePlanName, name="plan"),
+    # path('v2/plan/<plan_id>/exercise')
     # path('v2/plan/<id>', views.get_plan, name='get_plan')
 ]

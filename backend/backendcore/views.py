@@ -218,16 +218,23 @@ def delete_challenge(request, id):
 
 
 def plan(request):
-    result = ""
+    result = []
     user_UID = request.headers.get('UserUID')
+    res = ''
     if request.method == 'GET':
-        res = database.child("Data").child(user_UID).child("plan").get().val()
+        try:
+            res = database.child("Data").child(user_UID).child("plan").get().val()
 
-        result = []
+            for key, value in res.items():
+                item = {'id': key, 'name': value['name']}
+                result.append(item)
 
-        for key, value in res.items():
-            item = {'id': key, 'name': value['name']}
-            result.append(item)
+            return JsonResponse(result, safe=False)
+
+        except:
+            result = []
+
+
 
     elif request.method == 'POST':
         result = database.child("Data").child(user_UID).child("plan").push({
@@ -244,27 +251,8 @@ def addExerciseToPlan(request, plan_id):
     user_UID = request.headers.get('UserUID')
     if request.method == 'POST':
         result = database.child("Data").child(user_UID).child("plan").child(plan_id).child('exercise').push({
-            'name': 'Wyciskanie1',
-            'sets': [
-                {
-                    'weight': 150,
-                    'reps': 5,
-                    'isChecked': False,
-                    'isNegative': False
-                },
-                {
-                    'weight': 150,
-                    'reps': 5,
-                    'isChecked': False,
-                    'isNegative': False
-                },
-                {
-                    'weight': 150,
-                    'reps': 5,
-                    'isChecked': False,
-                    'isNegative': False
-                }
-            ]
+            'name': request.POST.get('name'),
+            'sets': json.loads(request.POST.get('sets'))
         })
 
     return JsonResponse(result, safe=False)
