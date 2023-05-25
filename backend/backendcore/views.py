@@ -265,3 +265,19 @@ def changePlanName(request, plan_id):
         result = database.child("Data").child(user_UID).child("plan").child(plan_id).child('name').set(newName)
 
     return JsonResponse(result, safe=False)
+
+def exercise(request, plan_id):
+    user_UID = request.headers.get('UserUID')
+    result = []
+    if request.method == 'GET':
+        res = database.child("Data").child(user_UID).child("plan").child(plan_id).child('exercise').get().val()
+
+        for key, value in res.items():
+            item = {
+                'id': key,
+                'name': value['name'],
+                'sets': value['sets']
+            }
+            result.append(item)
+
+    return JsonResponse(result, safe=False)
