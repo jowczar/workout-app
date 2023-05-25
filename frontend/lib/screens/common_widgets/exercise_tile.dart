@@ -60,11 +60,11 @@ class _ExerciseTileState extends State<ExerciseTile> {
                         ),
                       ),
                       Text(
-                        '${set.weight}kg',
+                        '${set.weight}',
                         style: AppStyle.txtTekoRegular20WhiteA700,
                       ),
                       Text(
-                        '${set.reps}reps',
+                        '${set.reps}',
                         style: AppStyle.txtTekoRegular20WhiteA700,
                       ),
                       GestureDetector(

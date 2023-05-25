@@ -32,7 +32,7 @@ class WorkoutPlanContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // List<Exercise> exercises = [];
-    BlocProvider.of<WorkoutPlanScreenBloc>(context).add(WorkoutPlanInitEvent());
+    BlocProvider.of<WorkoutPlanScreenBloc>(context).add(WorkoutPlanInitEvent(exerciseId));
     return Container(
       height: double.infinity,
       width: double.infinity,

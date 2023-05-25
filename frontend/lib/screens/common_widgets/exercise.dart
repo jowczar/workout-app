@@ -6,8 +6,8 @@ class Exercise {
 }
 
 class SetInfo {
-  final int weight;
-  final int reps;
+  final String weight;
+  final String reps;
   bool isChecked;
   bool isNegative;
 
