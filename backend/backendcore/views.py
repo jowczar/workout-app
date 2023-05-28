@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.http import QueryDict
 import pyrebase
+import datetime
 from backendcore.help.test_list import *
 config={
     "apiKey": "AIzaSyBO2fdyPfuae8loDfb2L75AsLWPURnanZY",
@@ -281,3 +282,49 @@ def exercise(request, plan_id):
             result.append(item)
 
     return JsonResponse(result, safe=False)
+
+def calendar_view(request, from_date, to_date):
+    user_UID = request.headers.get('UserUID', '')
+
+    from_month, from_year = map(int, from_date.split("-"))
+    to_month, to_year = map(int, to_date.split("-"))
+
+    start_date = datetime.date(from_year, from_month, 1)
+    end_date = datetime.date(to_year, to_month, 1)
+
+
+    all_days_data = database.child("Data").child(user_UID).child("Calendar").get().val()
+
+    days = []
+    for day_str, day_type in all_days_data.items():
+        day_date = datetime.datetime.strptime(day_str, "%d-%m-%Y").date()
+
+
+        if start_date <= day_date <= end_date:
+            days.append({
+                "date": day_str,
+                "day_type": day_type
+            })
+
+    return JsonResponse(days, safe=False)
+
+
+
+# set a day type function
+def set_day(request, day, month, year):
+    if request.method == 'POST':
+        user_UID = request.headers.get('UserUID', '')
+
+        day_type = request.POST.get('day_type', '')
+
+        if day_type:
+
+            day_date = datetime.date(int(year), int(month), int(day))
+            path = "Data/" + user_UID + "/Calendar/" + day_date.strftime("%d-%m-%Y")
+            database.child(path).set(day_type)
+
+            return JsonResponse({'status': 'success'}, status=200)
+        else:
+            return JsonResponse({'status': 'error', 'message': 'Missing day_type'}, status=400)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)

@@ -23,6 +23,9 @@ urlpatterns = [
     path('v2/plan', views.plan, name="plan"),
     path('v2/plan/<plan_id>', views.addExerciseToPlan, name="plan"),
     path('v2/plan_name/<plan_id>', views.changePlanName, name="plan"),
-    path('v2/plan/<plan_id>/sets', views.exercise)
+    path('v2/plan/<plan_id>/sets', views.exercise),
+
+    path('calendar_view/<str:from_date>/<str:to_date>', views.calendar_view, name='calendar'),
+    path('set_day/<int:day>/<int:month>/<int:year>', views.set_day, name='set_day'),
     # path('v2/plan/<id>', views.get_plan, name='get_plan')
 ]
