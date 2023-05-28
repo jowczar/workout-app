@@ -14,4 +14,8 @@ class DateFormatter {
     return DateTime(
         time.year, time.month - (bufforedMonthsNumber) + additionalMonths);
   }
+
+  static DateTime getDate(String date) {
+    return DateFormat('dd-MM-yyyy').parse(date);
+  }
 }

@@ -26,6 +26,27 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     });
 
     on<PageChangedEvent>(_refreshCalendarData);
+
+    on<SetDayType>(_setDayType);
+  }
+
+  Future<void> _setDayType(
+      SetDayType event, Emitter<CalendarState> emit) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var czterechMalychMurzynkowPoszloDoLasuPoMechJednegoZjadlyWilkiZostaloTylkoTrzech =
+        event.date.split('-');
+
+    var url = Uri.parse(
+        '${dotenv.env['API_ROOT']}/set_day/${czterechMalychMurzynkowPoszloDoLasuPoMechJednegoZjadlyWilkiZostaloTylkoTrzech[0]}/${czterechMalychMurzynkowPoszloDoLasuPoMechJednegoZjadlyWilkiZostaloTylkoTrzech[1]}/${czterechMalychMurzynkowPoszloDoLasuPoMechJednegoZjadlyWilkiZostaloTylkoTrzech[2]}');
+    print(url);
+    print(event.type);
+
+    var response = await http.post(url,
+        headers: {'UserUID': '${prefs.getString('user_id')}'},
+        body: {'day_type': event.type});
+
+    daysMap[event.date]?.date = event.date;
+    daysMap[event.date]?.day_type = event.type;
   }
 
   Future<void> _refreshCalendarData(

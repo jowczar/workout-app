@@ -14,3 +14,9 @@ class PageChangedEvent extends CalendarEvent {
 
   PageChangedEvent(this.focusedDay);
 }
+
+class SetDayType extends CalendarEvent {
+  final String type;
+  final String date;
+  SetDayType(this.type, this.date);
+}

@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/core/utils/date_formatter.dart';
+import 'package:workout_app/screens/common_widgets/custom_button.dart';
 
 import '../../../data/calendar_day.dart';
 import '../../common_widgets/loader.dart';
@@ -22,6 +23,8 @@ class CalendarContent extends StatefulWidget {
 }
 
 class _CalendarContent extends State<CalendarContent> {
+  String todayString = '';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,47 +59,88 @@ class _CalendarContent extends State<CalendarContent> {
   Widget _createMainData(BuildContext context) {
     BlocProvider.of<CalendarBloc>(context)
         .add(PageChangedEvent(DateTime.now()));
-    return SafeArea(
-        child: SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      child: TableCalendar(
-          locale: "en_US",
-          headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-              titleTextStyle: TextStyle(color: Colors.white, fontSize: 28),
-              leftChevronIcon: Icon(
-                Icons.arrow_left,
-                color: ColorConstant.white,
-                size: 50,
+    return Column(
+      children: [
+        SafeArea(
+            child: SizedBox(
+          height: MediaQuery.of(context).size.height - 500,
+          width: MediaQuery.of(context).size.width,
+          child: TableCalendar(
+              locale: "en_US",
+              headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle: TextStyle(color: Colors.white, fontSize: 28),
+                  leftChevronIcon: Icon(
+                    Icons.arrow_left,
+                    color: ColorConstant.white,
+                    size: 50,
+                  ),
+                  rightChevronIcon: Icon(
+                    Icons.arrow_right,
+                    color: ColorConstant.white,
+                    size: 50,
+                  )),
+              availableGestures: AvailableGestures.all,
+              firstDay: DateTime.utc(2010, 10, 16),
+              lastDay: DateTime.utc(2030, 3, 14),
+              onDaySelected: _onDaySelected,
+              focusedDay: todayString == ''
+                  ? DateTime.now()
+                  : DateFormatter.getDate(todayString),
+              calendarBuilders: _getCalendarBuilder(),
+              onPageChanged: _onPageChanged,
+              calendarStyle: const CalendarStyle(
+                outsideDaysVisible: false,
               ),
-              rightChevronIcon: Icon(
-                Icons.arrow_right,
-                color: ColorConstant.white,
-                size: 50,
-              )),
-          availableGestures: AvailableGestures.all,
-          firstDay: DateTime.utc(2010, 10, 16),
-          lastDay: DateTime.utc(2030, 3, 14),
-          onDaySelected: _onDaySelected,
-          focusedDay: DateTime.now(),
-          calendarBuilders: _getCalendarBuilder(),
-          onPageChanged: _onPageChanged,
-          calendarStyle: const CalendarStyle(
-            outsideDaysVisible: false,
-          ),
-          rowHeight: 130,
-          daysOfWeekHeight: 70),
-    ));
+              rowHeight: 100,
+              daysOfWeekHeight: 70),
+        )),
+        SizedBox(
+          height: 100,
+          child: todayString != ''
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomButton(
+                      text: 'Training',
+                      onTap: () => {
+                        BlocProvider.of<CalendarBloc>(context)
+                            .add(SetDayType('training', todayString))
+                      },
+                      width: 200,
+                    ),
+                    CustomButton(
+                      text: 'Rest',
+                      onTap: () => {
+                        BlocProvider.of<CalendarBloc>(context)
+                            .add(SetDayType('rest', todayString))
+                      },
+                      width: 200,
+                    ),
+                    CustomButton(
+                      text: 'Empty',
+                      onTap: () => {
+                        BlocProvider.of<CalendarBloc>(context)
+                            .add(SetDayType('Brak', todayString))
+                      },
+                      width: 200,
+                    )
+                  ],
+                )
+              : SizedBox(
+                  width: 45,
+                  height: 45,
+                ),
+        )
+      ],
+    );
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    CalendarDay? calendarDay = BlocProvider.of<CalendarBloc>(context)
-        .daysMap[DateFormatter.ddMMyyyy(day)];
-    print(calendarDay);
-    // BlocProvider.of<CalendarBloc>(context).add(DayTappedEvent(day));
-    // BlocProvider.of<CalendarBloc>(context).add(FetchCalendarDataEvent());
+    setState(() {
+      todayString = DateFormatter.ddMMyyyy(day);
+    });
   }
 
   void _onPageChanged(DateTime focusedDay) {
@@ -121,6 +165,11 @@ class _CalendarContent extends State<CalendarContent> {
       img = ImageConstant.imgDumbbell;
     } else if (calendarDay.day_type == 'rest') {
       img = ImageConstant.imgSleep;
+    } else {
+      return const SizedBox(
+        width: 45,
+        height: 45,
+      );
     }
 
     color = ColorConstant.white;
@@ -153,7 +202,11 @@ class _CalendarContent extends State<CalendarContent> {
       child: Column(
         children: <Widget>[
           Text(day.day.toString(),
-              style: const TextStyle(color: Colors.white, fontSize: 24)),
+              style: TextStyle(
+                  color: (todayString == DateFormatter.ddMMyyyy(day))
+                      ? Colors.red
+                      : Colors.white,
+                  fontSize: 24)),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: _getDayIcon(day),
