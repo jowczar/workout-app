@@ -80,7 +80,7 @@ class _WorkoutMainContent extends State<WorkoutMainContent> {
                     const SizedBox(height: 60),
                     for (TrainingPlan item in plans)
                       WorkoutPlanSlidableButton(
-                        exerciseName: item.name,
+                        exerciseName: item.name == '' ? 'Plan' : item.name,
                         exerciseId: item.id,
                       ),
                     const SizedBox(height: 70),

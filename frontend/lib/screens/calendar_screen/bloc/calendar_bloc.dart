@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workout_app/core/utils/date_formatter.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
 import '../../../data/calendar_day.dart';
 
 part 'calendar_event.dart';
@@ -79,26 +82,19 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
   Future<void> _fetchDaysData(DateTime dateStart, DateTime dateEnd) async {
     print('Start: $dateStart || End: $dateEnd');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await Future.delayed(const Duration(seconds: 2));
+    var url = Uri.parse(
+        '${dotenv.env['API_ROOT']}/calendar_view/${DateFormatter.MMyyyy(dateStart)}/${DateFormatter.MMyyyy(dateEnd)}');
 
-    for (var i = 0; i <= dateStart.difference(dateEnd).inDays.abs(); i++) {
-      if (!months.contains(DateFormatter.MMyyyy(
-          DateTime(dateStart.year, dateStart.month, dateStart.day + i)))) {
-        months.add(DateFormatter.MMyyyy(
-            DateTime(dateStart.year, dateStart.month, dateStart.day + i)));
-      }
+    var response = await http
+        .get(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
 
-      if (Random().nextInt(10) > 7) {
-        CalendarDay newDay = CalendarDay();
-        newDay.date = DateFormatter.ddMMyyyy(
-            DateTime(dateStart.year, dateStart.month, dateStart.day + i));
-        newDay.isDone = Random().nextBool();
-        newDay.isWorkout = Random().nextBool();
-        daysMap[DateFormatter.ddMMyyyy(
-                DateTime(dateStart.year, dateStart.month, dateStart.day + i))] =
-            newDay;
-      }
+    List<dynamic> jacek = json.decode(response.body);
+
+    for (var i = 0; i < jacek.length; i++) {
+      daysMap[jacek[i]['date']] =
+          CalendarDay(date: jacek[i]['date'], day_type: jacek[i]['day_type']);
     }
   }
 }

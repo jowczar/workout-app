@@ -117,12 +117,13 @@ class _CalendarContent extends State<CalendarContent> {
       );
     }
 
-    img = calendarDay.isWorkout!
-        ? ImageConstant.imgDumbbell
-        : ImageConstant.imgSleep;
-    color = calendarDay.isDone!
-        ? ColorConstant.secondaryColor
-        : ColorConstant.white;
+    if (calendarDay.day_type == 'training') {
+      img = ImageConstant.imgDumbbell;
+    } else if (calendarDay.day_type == 'rest') {
+      img = ImageConstant.imgSleep;
+    }
+
+    color = ColorConstant.white;
 
     return SvgPicture.asset(
       img,
