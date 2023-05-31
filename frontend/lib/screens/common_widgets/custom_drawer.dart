@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workout_app/core/app_export.dart';
-import 'package:workout_app/screens/sign_up/page/sign_up_page.dart';
+import 'package:workout_app/screens/lp_unauthorized_screen/lp_unauthorized_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -79,7 +78,7 @@ class CustomDrawer extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignUpPage(),
+                        builder: (context) => LpUnauthorizedScreen(),
                       ),
                     );
                   },
