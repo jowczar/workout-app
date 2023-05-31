@@ -44,14 +44,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconBottomBar(
-                            icon: "assets/images/statistics.png",
-                            selected: selectedIndex == 0,
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 0;
-                              });
-                            }),
-                        IconBottomBar(
                             icon: "assets/images/calendar.png",
                             selected: selectedIndex == 1,
                             onPressed: () {
