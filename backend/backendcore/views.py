@@ -273,13 +273,17 @@ def exercise(request, plan_id):
     if request.method == 'GET':
         res = database.child("Data").child(user_UID).child("plan").child(plan_id).child('exercise').get().val()
 
-        for key, value in res.items():
-            item = {
-                'id': key,
-                'name': value['name'],
-                'sets': value['sets']
-            }
-            result.append(item)
+        if res is not None:
+
+            for key, value in res.items():
+                item = {
+                    'id': key,
+                    'name': value['name'],
+                    'sets': value['sets']
+                }
+                result.append(item)
+        else:
+            result = []
 
     return JsonResponse(result, safe=False)
 
@@ -296,19 +300,32 @@ def calendar_view(request, from_date, to_date):
     all_days_data = database.child("Data").child(user_UID).child("Calendar").get().val()
 
     days = []
-    for day_str, day_type in all_days_data.items():
-        day_date = datetime.datetime.strptime(day_str, "%d-%m-%Y").date()
+
+    if all_days_data is not None:
+
+        for day_str, day_type in all_days_data.items():
+            day_date = datetime.datetime.strptime(day_str, "%d-%m-%Y").date()
 
 
-        if start_date <= day_date <= end_date:
-            days.append({
-                "date": day_str,
-                "day_type": day_type
-            })
+            if start_date <= day_date <= end_date:
+                days.append({
+                    "date": day_str,
+                    "day_type": day_type
+                })
+
+    else:
+        days = []
 
     return JsonResponse(days, safe=False)
 
+def delete_plan(request, plan_id):
+    if request.method == "DELETE":
+        user_UID = request.headers.get('UserUID', '')
 
+        if plan_id:
+            database.child("Data").child(user_UID).child("plan").child(plan_id).set(None)
+
+    return JsonResponse([], safe=False)
 
 # set a day type function
 def set_day(request, day, month, year):
