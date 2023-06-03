@@ -37,8 +37,17 @@ class WorkoutMainPage extends StatelessWidget {
         builder: (context, state) {
           return const WorkoutMainContent();
         },
-        listenWhen: (_, currState) => currState is ErrorState,
-        listener: (context, state) {},
+        listenWhen: (_, currState) => currState is ErrorState || currState is DeletedState,
+        listener: (context, state) async {
+          if(state is DeletedState){
+            await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => WorkoutMainPage(
+                      selectedIndex: 2,
+                    )));
+            });
+          }
+        },
       ),
     );
   }

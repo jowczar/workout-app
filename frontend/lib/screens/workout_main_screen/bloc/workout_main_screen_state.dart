@@ -26,3 +26,5 @@ class ErrorState extends WorkoutMainScreenState {
     required this.message,
   });
 }
+
+class DeletedState extends WorkoutMainScreenState{}

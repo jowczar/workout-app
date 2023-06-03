@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:workout_app/core/app_export.dart';
 import 'package:workout_app/screens/common_widgets/custom_button.dart';
+import 'package:workout_app/screens/workout_main_screen/bloc/workout_main_screen_bloc.dart';
+import 'package:workout_app/screens/workout_plan_screen/bloc/workout_plan_screen_bloc.dart';
 import 'package:workout_app/screens/workout_plan_screen/page/workout_plan_page.dart';
 
 class WorkoutPlanSlidableButton extends StatelessWidget {
@@ -25,7 +28,8 @@ class WorkoutPlanSlidableButton extends StatelessWidget {
                 bottomRight: Radius.circular(30),
               ),
               onPressed: ((context) {
-                // delete something
+                BlocProvider.of<WorkoutMainScreenBloc>(context)
+                  .add(WorkoutMainDeletePlanEvent(exerciseId));
               }),
               icon: Icons.delete,
               foregroundColor: Color.fromARGB(255, 185, 100, 94),
