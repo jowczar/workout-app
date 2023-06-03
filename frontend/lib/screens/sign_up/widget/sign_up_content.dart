@@ -134,7 +134,7 @@ class SignUpContent extends StatelessWidget {
             ),
             CustomTextField(
               title: "",
-              placeholder: TextConstant.password,
+              placeholder: TextConstant.confirmPassword,
               controller: bloc.confirmPasswordController,
               errorText: TextConstant.confirmPasswordPlaceholder,
               isError: state is ShowErrorState

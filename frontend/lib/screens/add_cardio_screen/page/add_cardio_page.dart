@@ -7,6 +7,7 @@ import 'package:workout_app/screens/common_widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_app/screens/add_cardio_screen/widget/add_cardio_content.dart';
+import 'package:workout_app/screens/create_workout_plan_screen/page/create_workout_plan_page.dart';
 
 class AddCardioPage extends StatelessWidget {
   final int selectedIndex;
@@ -33,8 +34,16 @@ class AddCardioPage extends StatelessWidget {
         builder: (context, state) {
           return const AddCardioContent();
         },
-        listenWhen: (_, currState) => currState is ErrorState,
-        listener: (context, state) {},
+        listenWhen: (_, currState) => currState is ErrorState || currState is NextTabBarPageState,
+        listener: (context, state) async {
+          if(state is NextTabBarPageState) {
+            await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => CreateWorkoutPlanPage(
+                      selectedIndex: 2,
+                    )));
+            });
+        }},
       ),
     );
   }

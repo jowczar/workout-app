@@ -14,7 +14,7 @@ part 'calendar_event.dart';
 part 'calendar_state.dart';
 
 class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
-  final bufforedMonthsNumber = 3;
+  final bufforedMonthsNumber = 12;
   final daysMap = <String, CalendarDay>{};
   final months = <String>[];
 

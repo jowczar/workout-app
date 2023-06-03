@@ -100,7 +100,7 @@ class AddNewChallengeContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   _createCancelButton(context),
-                  _createSaveButton(context),
+                  if(BlocProvider.of<AddNewChallengeScreenBloc>(context).nameController.text.isNotEmpty) _createSaveButton(context),
                 ],
               ),
             ),
@@ -179,7 +179,8 @@ class AddNewChallengeContent extends StatelessWidget {
           return CustomButton(
             onTap: () {
               FocusScope.of(context).unfocus();
-              bloc.add(SaveButtonTappedEvent());
+              if(bloc.nameController.text.isNotEmpty)
+                bloc.add(SaveButtonTappedEvent());
             },
             text: TextConstant.saveButton,
             width: 238,

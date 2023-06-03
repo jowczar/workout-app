@@ -26,9 +26,14 @@ class AddNewChallengeScreenBloc extends Bloc<AddNewChallengeScreenEvent, AddNewC
     emit(LoadingState());
 
     var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/challenge');
+    var normalnaNazwaWNewChallenge = pointsController.text;
+
+    if(pointsController.text.isEmpty)
+      normalnaNazwaWNewChallenge = "0";
+    
     await http.post(url, 
       headers: {'UserUID': '${prefs.getString('user_id')}', 'X-CSRFToken': '34inrzBarciU428wJ7FjqhfKc0g0yTTt'},
-      body: {'name': nameController.text, 'points': pointsController.text});
+      body: {'name': nameController.text, 'points': normalnaNazwaWNewChallenge});
     // var response = await http.get(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
     // List<Challenge> challenges = List<Challenge>.from(json.decode(response.body).map((x) => Challenge.fromJson(x)));
 

@@ -25,15 +25,6 @@ class AddCardioScreenBloc extends Bloc<AddCardioScreenEvent, AddCardioScreenStat
     Emitter<AddCardioScreenState> emit
   ) async {
     print(1);
-      // var setsList = [];
-      // for(int i = 0; i < sets.length; i++){
-      //   setsList.add({
-      //     'isChecked': false,
-      //     'isNegative': false,
-      //     'value1': '${sets[i]['weight']?.text}kg',
-      //     'value2': '${sets[i]['reps']?.text}reps'
-      //   });
-      // }
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan/${prefs.getString('new_plan')}');
