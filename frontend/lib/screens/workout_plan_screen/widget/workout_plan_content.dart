@@ -33,6 +33,7 @@ class WorkoutPlanContent extends StatelessWidget {
   Widget build(BuildContext context) {
     // List<Exercise> exercises = [];
     BlocProvider.of<WorkoutPlanScreenBloc>(context).add(WorkoutPlanInitEvent(exerciseId));
+    print("${exerciseId} - exerciseID");
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -94,7 +95,7 @@ class WorkoutPlanContent extends StatelessWidget {
                   children: <Widget>[
                     const SizedBox(height: 60),
                     for (Exercise exercise in exercises)
-                      ExerciseTile(exercise: exercise),
+                      ExerciseTile(exercise: exercise, planID: exerciseId),
                     const SizedBox(height: 70),
                     if (exercises.isNotEmpty)
                       Align(

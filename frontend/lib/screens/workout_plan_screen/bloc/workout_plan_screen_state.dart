@@ -20,3 +20,5 @@ class LoadedState extends WorkoutPlanScreenState {
 }
 
 class WorkoutPlanScreenInitial extends WorkoutPlanScreenState {}
+
+class DeletedState extends WorkoutPlanScreenState{}

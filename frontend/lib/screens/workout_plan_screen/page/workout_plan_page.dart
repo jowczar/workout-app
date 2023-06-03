@@ -59,8 +59,19 @@ class WorkoutPlanPage extends StatelessWidget {
             exerciseName: exerciseName,
           );
         },
-        listenWhen: (_, currState) => currState is ErrorState,
-        listener: (context, state) {},
+        listenWhen: (_, currState) => currState is ErrorState || currState is DeletedState,
+        listener: (context, state) async {
+          if(state is DeletedState) {
+                        await Future.delayed(Duration.zero, () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (_) => WorkoutPlanPage(
+                              exerciseId: exerciseId,
+            exerciseName: exerciseName,
+                      selectedIndex: 2,
+                    )));
+            });
+          }
+        },
       ),
     );
   }

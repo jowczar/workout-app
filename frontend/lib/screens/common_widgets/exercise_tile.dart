@@ -6,15 +6,19 @@ import 'package:workout_app/screens/common_widgets/slidable_button.dart';
 
 class ExerciseTile extends StatefulWidget {
   final Exercise exercise;
-
-  ExerciseTile({required this.exercise});
+  final String planID;
+  ExerciseTile({required this.exercise, required this.planID});
 
   @override
-  _ExerciseTileState createState() => _ExerciseTileState();
+  _ExerciseTileState createState() => _ExerciseTileState(exercise, planID);
 }
 
 class _ExerciseTileState extends State<ExerciseTile> {
   bool _isExpanded = false;
+  final Exercise exercise;
+  final String planID;
+
+  _ExerciseTileState(this.exercise, this.planID);
 
   void _handleTap() {
     setState(() {
@@ -29,6 +33,8 @@ class _ExerciseTileState extends State<ExerciseTile> {
         ExerciseSlidableButton(
           exerciseName: widget.exercise.name,
           onTap: _handleTap,
+          exercise: exercise,
+          planID: planID,
         ),
         if (_isExpanded)
           ...widget.exercise.sets

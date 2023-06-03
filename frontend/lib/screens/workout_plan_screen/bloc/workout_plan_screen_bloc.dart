@@ -16,6 +16,7 @@ class WorkoutPlanScreenBloc
   WorkoutPlanScreenBloc() : super(WorkoutPlanScreenInitial()) {
     on<WorkoutPlanScreenEvent>((event, emit) {});
     on<WorkoutPlanInitEvent>(_fetchData);
+    on<WorkoutPlanDeleteExerciseEvent>(_deleteExercise);
   }
 
   Future<void> _fetchData(
@@ -28,8 +29,6 @@ class WorkoutPlanScreenBloc
     var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan/${event.id}/sets');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var response = await http.get(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
-    // List<Challenge> challenges = List<Challenge>.from(json.decode(response.body).map((x) => Challenge.fromJson(x)));
-    // print('${event.id} event');
     List<Exercise> exercises = [];
     List<dynamic> res = json.decode(response.body);
     
@@ -47,26 +46,25 @@ class WorkoutPlanScreenBloc
       
       exercises.add(
         Exercise(
+          id: res[i]['id'],
           name: res[i]['name'], 
           sets: sets
         )
       );
     }
 
-    // for (var i = 0; i <= Random().nextInt(3) + 2; i++) {
-    //   exercises.add(Exercise(name: 'Ćwiczonko ${i}', sets: [
-    //     SetInfo(
-    //         weight: (Random().nextInt(5) + 10) * 10,
-    //         reps: Random().nextInt(3) + 2),
-    //     SetInfo(
-    //         weight: (Random().nextInt(5) + 10) * 10,
-    //         reps: Random().nextInt(3) + 2),
-    //     SetInfo(
-    //         weight: (Random().nextInt(5) + 10) * 10,
-    //         reps: Random().nextInt(3) + 2),
-    //   ]));
-    // }
-
     emit(LoadedState(exercises));
+  }
+
+
+  Future<void> _deleteExercise(
+    WorkoutPlanDeleteExerciseEvent event, 
+    Emitter<WorkoutPlanScreenState> emit
+  ) async {
+    emit(LoadingState());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan/${event.planID}/${event.id}/delete');
+    var res = await http.delete(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
+    emit(DeletedState());
   }
 }

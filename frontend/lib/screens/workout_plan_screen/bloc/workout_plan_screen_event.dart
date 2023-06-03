@@ -10,3 +10,9 @@ class WorkoutPlanInitEvent extends WorkoutPlanScreenEvent {
     this.id
   );
 }
+
+class WorkoutPlanDeleteExerciseEvent extends WorkoutPlanScreenEvent {
+  final String id;
+  final String planID;
+  WorkoutPlanDeleteExerciseEvent(this.id, this.planID);
+}
