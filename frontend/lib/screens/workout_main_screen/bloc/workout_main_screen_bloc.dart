@@ -23,6 +23,8 @@ class WorkoutMainScreenBloc
     });
 
     on<WorkoutMainInitEvent>(_fetchData);
+
+    on<WorkoutMainDeletePlanEvent>(_deletePlan);
   }
 
   Future<void> _fetchData(
@@ -42,5 +44,14 @@ class WorkoutMainScreenBloc
     // }
 
     emit(LoadedState(plan));
+  }
+
+  Future<void> _deletePlan(WorkoutMainDeletePlanEvent event, Emitter<WorkoutMainScreenState> emit) async {
+    emit(LoadingState());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var url = Uri.parse('${dotenv.env['API_ROOT']}/v2/plan/${event.planID}/delete');
+    var res = await http.delete(url, headers: {'UserUID': '${prefs.getString('user_id')}'});
+    emit(DeletedState());
+    // List<TrainingPlan> plan = List<TrainingPlan>.from(json.decode(res.body).map((x) => TrainingPlan.fromJson(x)));
   }
 }
