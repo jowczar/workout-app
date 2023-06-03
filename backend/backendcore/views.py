@@ -327,6 +327,17 @@ def delete_plan(request, plan_id):
 
     return JsonResponse([], safe=False)
 
+
+def delete_exercise(request, plan_id, exercise_id):
+    if request.method == "DELETE":
+        user_UID = request.headers.get('UserUID', '')
+
+        if plan_id:
+            database.child("Data").child(user_UID).child("plan").child(plan_id).child("exercise").child(exercise_id).set(None)
+
+    return JsonResponse([], safe=False)
+
+
 # set a day type function
 def set_day(request, day, month, year):
     if request.method == 'POST':
